@@ -11,29 +11,21 @@ import Alamofire
 import SwiftyJSON
 
 class ViewController: UIViewController {
-    var stringArray = [String]()
     let basicURL = "http://data.ntpc.gov.tw/od/data/api/54DDDC93-589C-4858-9C95-18B2046CC1FC?"
     
-    let parameters1 = ["$format" : "json"]
+    let parameters = ["$format" : "json"]
 
-    let parameters2 = ["$format" : "json",
-                      "$filter" : "lat eq 25.025358"
-                      ]
-//    let parameters3: [String : Any] = ["$format" : "json",
-//                      "$filter" : [["lat" : "25.025358","lng" : "121.428348"]]]
     
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
+        super.viewDidLoad()        
         getJSON()
     }
 
     func getJSON(){
         //reponseString -> responseJSON
-        Alamofire.request(basicURL,method: .get,parameters: parameters1).responseJSON { response in
+        Alamofire.request(basicURL,method: .get,parameters: parameters).responseJSON { response in
             if response.result.isSuccess {
                 // convert data to dictionary array
                 

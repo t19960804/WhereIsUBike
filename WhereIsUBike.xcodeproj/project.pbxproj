@@ -12,6 +12,10 @@
 		0B2A87EC2172E32A00115FBF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2A87EA2172E32A00115FBF /* Main.storyboard */; };
 		0B2A87EE2172E32D00115FBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B2A87ED2172E32D00115FBF /* Assets.xcassets */; };
 		0B2A87F12172E32D00115FBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0B2A87EF2172E32D00115FBF /* LaunchScreen.storyboard */; };
+		0B2A87FC2174823C00115FBF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A87FB2174823C00115FBF /* MapViewController.swift */; };
+		0B2A87FE2175891400115FBF /* InterNetService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A87FD2175891400115FBF /* InterNetService.swift */; };
+		0B2A88002175B43000115FBF /* CustomAnnotaiton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A87FF2175B43000115FBF /* CustomAnnotaiton.swift */; };
+		0B2A88022175D8F300115FBF /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A88012175D8F300115FBF /* CustomTabBarController.swift */; };
 		3DDEB41E70925597AB4BE983 /* Pods_WhereIsUBike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C2EFE3323E46BE0F72DCF /* Pods_WhereIsUBike.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +27,10 @@
 		0B2A87ED2172E32D00115FBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0B2A87F02172E32D00115FBF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0B2A87F22172E32D00115FBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0B2A87FB2174823C00115FBF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		0B2A87FD2175891400115FBF /* InterNetService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterNetService.swift; sourceTree = "<group>"; };
+		0B2A87FF2175B43000115FBF /* CustomAnnotaiton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotaiton.swift; sourceTree = "<group>"; };
+		0B2A88012175D8F300115FBF /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		404C2EFE3323E46BE0F72DCF /* Pods_WhereIsUBike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhereIsUBike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58383A4ACD7E2F5011933A9A /* Pods-WhereIsUBike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereIsUBike.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhereIsUBike/Pods-WhereIsUBike.release.xcconfig"; sourceTree = "<group>"; };
 		6C6A578A72E7E97DD426B742 /* Pods-WhereIsUBike.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereIsUBike.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhereIsUBike/Pods-WhereIsUBike.debug.xcconfig"; sourceTree = "<group>"; };
@@ -61,14 +69,11 @@
 		0B2A87E52172E32A00115FBF /* WhereIsUBike */ = {
 			isa = PBXGroup;
 			children = (
+				0B2A87F821747FEC00115FBF /* Model */,
 				0B2A87FA21747FFA00115FBF /* Controller */,
 				0B2A87F921747FF500115FBF /* View */,
-				0B2A87F821747FEC00115FBF /* Model */,
 				0B2A87E62172E32A00115FBF /* AppDelegate.swift */,
-				0B2A87E82172E32A00115FBF /* DataService.swift */,
-				0B2A87EA2172E32A00115FBF /* Main.storyboard */,
 				0B2A87ED2172E32D00115FBF /* Assets.xcassets */,
-				0B2A87EF2172E32D00115FBF /* LaunchScreen.storyboard */,
 				0B2A87F22172E32D00115FBF /* Info.plist */,
 			);
 			path = WhereIsUBike;
@@ -77,6 +82,9 @@
 		0B2A87F821747FEC00115FBF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0B2A87E82172E32A00115FBF /* DataService.swift */,
+				0B2A87FD2175891400115FBF /* InterNetService.swift */,
+				0B2A87FF2175B43000115FBF /* CustomAnnotaiton.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -84,6 +92,8 @@
 		0B2A87F921747FF500115FBF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0B2A87EF2172E32D00115FBF /* LaunchScreen.storyboard */,
+				0B2A87EA2172E32A00115FBF /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -91,6 +101,8 @@
 		0B2A87FA21747FFA00115FBF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0B2A87FB2174823C00115FBF /* MapViewController.swift */,
+				0B2A88012175D8F300115FBF /* CustomTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -231,7 +243,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B2A87E92172E32A00115FBF /* DataService.swift in Sources */,
+				0B2A87FC2174823C00115FBF /* MapViewController.swift in Sources */,
+				0B2A88022175D8F300115FBF /* CustomTabBarController.swift in Sources */,
+				0B2A87FE2175891400115FBF /* InterNetService.swift in Sources */,
 				0B2A87E72172E32A00115FBF /* AppDelegate.swift in Sources */,
+				0B2A88002175B43000115FBF /* CustomAnnotaiton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
