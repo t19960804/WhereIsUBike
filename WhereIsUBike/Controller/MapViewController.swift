@@ -59,17 +59,21 @@ extension MapViewController: CLLocationManagerDelegate{
 extension MapViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
+        
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "AnnotationView")
         //因為annotationView可能是nil
         guard let stationTitle = annotation.title else{return nil}
         
         if annotationView == nil{
+            
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "AnnotationView")
         }
         if stationTitle! == "My Location"{
+            
             annotationView?.image = UIImage(named: "location64")
         
         }else{
+            
             annotationView?.image = UIImage(named: "bike64")
         }
         

@@ -18,6 +18,7 @@ struct InterNetService {
     
     func dealWithJSON(map: MKMapView) {
         //reponseString -> responseJSON
+        //只有responseJSON可以用平常的方法解
         Alamofire.request(basicURL,method: .get,parameters: parameters).responseJSON { response in
             if response.result.isSuccess {
                 // convert data to dictionary array
