@@ -8,13 +8,14 @@
 
 import UIKit
 import MapKit
+import SwiftyJSON
 class MapViewController: UIViewController {
     var locationManager = CLLocationManager()
-    let interNetService = InterNetService()
+    var interNetSerVice = InterNetService()
+    
     @IBOutlet weak var userMap: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        interNetService.dealWithJSON(map: userMap)
         userMap.delegate = self
         // 顯示自身定位位置
         userMap.showsUserLocation = true
@@ -31,9 +32,33 @@ class MapViewController: UIViewController {
             locationManager.startUpdatingLocation()
         }
         
-        
+        interNetSerVice.dealWithJSON { (json) in
+            self.analyzeJSON(with: json)
+        }
+       
+       
     }
     
+    func analyzeJSON(with json: JSON) {
+        for jsonObject in json.arrayValue{
+            let lat = jsonObject["lat"].stringValue
+            let lng = jsonObject["lng"].stringValue
+            let name = jsonObject["sna"].stringValue
+            let number_Borrow = jsonObject["sbi"].stringValue
+            let number_Return = jsonObject["bemp"].stringValue
+            
+            addAnnotations(lattitude: Double(lat) ?? 0.0, longtitude: Double(lng) ?? 0.0,stationName: name,canBorrow: number_Borrow,canReturn: number_Return,map: userMap)
+            
+        }
+        
+    }
+    func addAnnotations(lattitude: Double,longtitude: Double,stationName: String,canBorrow: String,canReturn: String,map: MKMapView){
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: lattitude , longitude: longtitude)
+        annotation.title = stationName
+        annotation.subtitle = "可借:\(canBorrow)    可還:\(canReturn)"
+        map.addAnnotation(annotation)
+    }
     
 
 }
@@ -50,8 +75,7 @@ extension MapViewController: CLLocationManagerDelegate{
         let mapRegion = MKCoordinateRegion.init(center: userLocation.coordinate, span: mapSpan)
         
         userMap.setRegion(mapRegion, animated: true)
-        print(currentValue.latitude)
-        print(currentValue.longitude)
+        
         
         
     }
@@ -78,7 +102,6 @@ extension MapViewController: MKMapViewDelegate{
         }
         
         annotationView?.canShowCallout = true
-        print(stationTitle!)
         return annotationView
     }
     

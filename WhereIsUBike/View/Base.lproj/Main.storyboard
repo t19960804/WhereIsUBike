@@ -9,14 +9,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--List Station Controller-->
         <scene sceneID="WHL-Pa-Kzo">
             <objects>
-                <viewController id="sCv-rZ-vWq" sceneMemberID="viewController">
+                <viewController id="sCv-rZ-vWq" customClass="ListStationController" customModule="WhereIsUBike" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zOr-GV-P6X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.77677877790000005" green="0.89912107240000005" blue="0.18515162060000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="vWS-mW-h3U"/>
                     </view>
                     <tabBarItem key="tabBarItem" image="list" id="N8S-ez-Kb2">
