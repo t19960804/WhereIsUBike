@@ -12,7 +12,7 @@ import SwiftyJSON
 class MapViewController: UIViewController {
     var locationManager = CLLocationManager()
     var interNetSerVice = InterNetService()
-    
+    var userLocation = CLLocation()
     @IBOutlet weak var userMap: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +36,8 @@ class MapViewController: UIViewController {
             self.analyzeJSON(with: json)
         }
        
-       
     }
-    
+
     func analyzeJSON(with json: JSON) {
         for jsonObject in json.arrayValue{
             let lat = jsonObject["lat"].stringValue
@@ -46,9 +45,11 @@ class MapViewController: UIViewController {
             let name = jsonObject["sna"].stringValue
             let number_Borrow = jsonObject["sbi"].stringValue
             let number_Return = jsonObject["bemp"].stringValue
-            
+            let distance = userLocation.distance(from: CLLocation(latitude: Double(lat) ?? 0.0, longitude: Double(lng) ?? 0.0))
             addAnnotations(lattitude: Double(lat) ?? 0.0, longtitude: Double(lng) ?? 0.0,stationName: name,canBorrow: number_Borrow,canReturn: number_Return,map: userMap)
             
+            print("\(name),lat:\(lat) lng:\(lng)")
+            print("\(name),距離:\(Int(distance))公尺 \n\n")
         }
         
     }
@@ -67,15 +68,16 @@ extension MapViewController: CLLocationManagerDelegate{
     //當使用者座標改變後觸發
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        guard let currentValue = manager.location?.coordinate else{return}
-        guard let userLocation = locations.last else{return}
+        guard let coordinate = manager.location?.coordinate else{return}
+        let currentLocationValue = coordinate
+        guard let newestLocation = locations.last else {return}
+        userLocation = newestLocation
         //放大比例(latitudeDelta/longitudeDelta)
         let mapSpan = MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta:0.003 )
         
         let mapRegion = MKCoordinateRegion.init(center: userLocation.coordinate, span: mapSpan)
         
         userMap.setRegion(mapRegion, animated: true)
-        
         
         
     }

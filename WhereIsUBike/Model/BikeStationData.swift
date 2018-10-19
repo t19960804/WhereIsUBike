@@ -12,6 +12,7 @@ struct BikeStationData {
     var station_Title = ""
     var bike_Borrow = ""
     var bike_Return = ""
+    var distance = ""
     
     init(station_Title: String,bike_Borrow: String,bike_Return: String){
         self.station_Title = station_Title

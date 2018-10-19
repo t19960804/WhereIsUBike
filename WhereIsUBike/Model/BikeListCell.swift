@@ -50,6 +50,7 @@ class BikeListCell: UITableViewCell {
     }
     
     func setUpConstraints(){
+        
         stationTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stationTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
         stationTitle.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5)

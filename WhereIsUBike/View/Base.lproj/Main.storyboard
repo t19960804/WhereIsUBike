@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--List Station Controller-->
+        <!--附近站點-->
         <scene sceneID="WHL-Pa-Kzo">
             <objects>
                 <viewController id="sCv-rZ-vWq" customClass="ListStationController" customModule="WhereIsUBike" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,15 +19,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="vWS-mW-h3U"/>
                     </view>
-                    <tabBarItem key="tabBarItem" image="list" id="N8S-ez-Kb2">
-                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    <tabBarItem key="tabBarItem" title="附近站點" image="list" id="N8S-ez-Kb2">
+                        <inset key="imageInsets" minX="0.0" minY="-1" maxX="0.0" maxY="1"/>
                     </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88f-Nd-wf5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1799" y="250"/>
         </scene>
-        <!--Map View Controller-->
+        <!--目前位置-->
         <scene sceneID="4K8-re-wLC">
             <objects>
                 <viewController id="2hI-3q-5CU" customClass="MapViewController" customModule="WhereIsUBike" customModuleProvider="target" sceneMemberID="viewController">
@@ -48,9 +48,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DPa-1a-VR6"/>
                     </view>
-                    <tabBarItem key="tabBarItem" image="orientation" id="3Rq-hg-uFh">
-                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="目前位置" image="orientation" id="3Rq-hg-uFh"/>
                     <connections>
                         <outlet property="userMap" destination="pw3-RQ-tm9" id="MxX-2z-ij8"/>
                     </connections>
