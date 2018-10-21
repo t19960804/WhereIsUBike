@@ -13,52 +13,87 @@ class BikeListCell: UITableViewCell {
     let stationTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(20)
-        label.textAlignment = .center
+        label.font = label.font.withSize(25)
+        label.textAlignment = .left
         return label
     }()
     let numberCanBorrow: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(20)
-        label.text = "text"
         return label
     }()
     let numberCanReturn: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(20)
-        label.text = "text"
         return label
     }()
-    lazy var labelStackView: UIStackView = {
+    lazy var labelStackView_Number: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [numberCanBorrow,numberCanReturn])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
-        stackView.axis = .horizontal
-        stackView.spacing = 50
-        stackView.backgroundColor = UIColor.green
+        stackView.axis = .vertical
+        stackView.spacing = 10
         return stackView
+    }()
+    let numberCanReturn_Pure: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(20)
+        label.text = "可還"
+        return label
+    }()
+    let numberCanBorrow_Pure: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(20)
+        label.text = "可借"
+        return label
+    }()
+    lazy var labelStackView_Text: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [numberCanReturn_Pure,numberCanBorrow_Pure])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        return stackView
+    }()
+    let stationDistane: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = label.font.withSize(15)
+        return label
     }()
     //呼叫UITableViewCell的指定建構器
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.addSubview(stationTitle)
-        self.addSubview(labelStackView)
-        
+        self.addSubview(labelStackView_Number)
+        self.addSubview(labelStackView_Text)
+        self.addSubview(stationDistane)
         setUpConstraints()
     }
     
     func setUpConstraints(){
-        
-        stationTitle.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stationTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
-        stationTitle.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5)
-        stationTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1).isActive = true
+        stationTitle.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
+        stationTitle.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
+        stationTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
         
-        labelStackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        labelStackView.topAnchor.constraint(equalTo: stationTitle.bottomAnchor, constant: 8).isActive = true
+        stationDistane.topAnchor.constraint(equalTo: self.stationTitle.bottomAnchor, constant: -3).isActive = true
+        stationDistane.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
+        stationDistane.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
+        stationDistane.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         
+        labelStackView_Text.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        labelStackView_Text.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -40).isActive = true
+        
+        labelStackView_Number.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        labelStackView_Number.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -5).isActive = true
+        
+        
+
     }
     
     

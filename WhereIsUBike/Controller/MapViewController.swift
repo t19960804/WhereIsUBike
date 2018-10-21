@@ -5,7 +5,8 @@
 //  Created by t19960804 on 2018/10/15.
 //  Copyright © 2018 t19960804. All rights reserved.
 //
-
+//中港經緯: 25.054916 / 121.450905
+//幸福經緯: 25.049627 / 121.459427
 import UIKit
 import MapKit
 import SwiftyJSON
@@ -13,6 +14,8 @@ class MapViewController: UIViewController {
     var locationManager = CLLocationManager()
     var interNetSerVice = InterNetService()
     var userLocation = CLLocation()
+    var bikeStationArray = [BikeStationData]()
+    var distanceOfStation = ""
     @IBOutlet weak var userMap: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +24,6 @@ class MapViewController: UIViewController {
         userMap.showsUserLocation = true
         // 允許縮放地圖
         userMap.isZoomEnabled = true
-        //userMap.userLocation.title = ""
         //請求使用者授權
         locationManager.requestWhenInUseAuthorization()
 
@@ -34,24 +36,60 @@ class MapViewController: UIViewController {
         
         interNetSerVice.dealWithJSON { (json) in
             self.analyzeJSON(with: json)
+            
+            guard let destination = self.tabBarController?.viewControllers![1] as? ListStationController else{
+                return
+            }
+            destination.bikeStationArray = self.bikeStationArray
         }
-       
     }
-
+    
     func analyzeJSON(with json: JSON) {
+        //viewDidLoad跟地點變動時各觸發一次,清空避免累加
+        //地點變動後切換頁面再觸發
+        if bikeStationArray.isEmpty == false{
+            bikeStationArray.removeAll()
+            sortItemsAndAddAnnotation(with: json)
+        }else{
+            sortItemsAndAddAnnotation(with: json)
+        }
+        
+    }
+    func sortItemsAndAddAnnotation(with json: JSON){
         for jsonObject in json.arrayValue{
             let lat = jsonObject["lat"].stringValue
             let lng = jsonObject["lng"].stringValue
             let name = jsonObject["sna"].stringValue
             let number_Borrow = jsonObject["sbi"].stringValue
             let number_Return = jsonObject["bemp"].stringValue
-            let distance = userLocation.distance(from: CLLocation(latitude: Double(lat) ?? 0.0, longitude: Double(lng) ?? 0.0))
+            //計算兩點距離
+            var distance = userLocation.distance(from: CLLocation(latitude: Double(lat) ?? 0.0, longitude: Double(lng) ?? 0.0))
+            //某些距離會多出一大段距離
+            if Int(distance) >= 13150000{
+                distance = distance - 13150000
+//                distanceOfStation = "\(Int(distance / 1000))公里"
+                distanceOfStation = "\(String(format:"%.1f",distance / 1000))公里"
+                
+            }else if Int(distance) >= 11610000{
+                distance = distance - 11610000
+                distanceOfStation = "\(String(format:"%.1f",distance / 1000))公里"
+            }
+            else if Int(distance) >= 1000{
+//                distanceOfStation = "\(Int(distance / 1000))公里"
+                distanceOfStation = "\(String(format:"%.1f",distance / 1000))公里"
+
+            }else{
+                distanceOfStation = "\(Int(distance))公尺"
+            }
+            let station_Object = BikeStationData(station_Title: name, station_Borrow: number_Borrow, station_Return: number_Return,station_Distance: distanceOfStation,station_Distance_Number: Int(distance))
+            bikeStationArray.append(station_Object)
             addAnnotations(lattitude: Double(lat) ?? 0.0, longtitude: Double(lng) ?? 0.0,stationName: name,canBorrow: number_Borrow,canReturn: number_Return,map: userMap)
             
-            print("\(name),lat:\(lat) lng:\(lng)")
-            print("\(name),距離:\(Int(distance))公尺 \n\n")
         }
-        
+        //依照距離排序
+        bikeStationArray.sort{ (stationData1, stationData2) -> Bool in
+            return stationData1.station_Distance_Number < stationData2.station_Distance_Number
+        }
     }
     func addAnnotations(lattitude: Double,longtitude: Double,stationName: String,canBorrow: String,canReturn: String,map: MKMapView){
         let annotation = MKPointAnnotation()
@@ -68,17 +106,22 @@ extension MapViewController: CLLocationManagerDelegate{
     //當使用者座標改變後觸發
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        guard let coordinate = manager.location?.coordinate else{return}
-        let currentLocationValue = coordinate
+
         guard let newestLocation = locations.last else {return}
         userLocation = newestLocation
         //放大比例(latitudeDelta/longitudeDelta)
         let mapSpan = MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta:0.003 )
         
         let mapRegion = MKCoordinateRegion.init(center: userLocation.coordinate, span: mapSpan)
-        
+        interNetSerVice.dealWithJSON { (json) in
+            self.analyzeJSON(with: json)
+            guard let destination = self.tabBarController?.viewControllers![1] as? ListStationController else{
+                return
+            }
+            destination.bikeStationArray = self.bikeStationArray
+        }
         userMap.setRegion(mapRegion, animated: true)
-        
+       
         
     }
 }

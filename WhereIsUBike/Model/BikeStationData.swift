@@ -10,13 +10,15 @@ import Foundation
 
 struct BikeStationData {
     var station_Title = ""
-    var bike_Borrow = ""
-    var bike_Return = ""
-    var distance = ""
-    
-    init(station_Title: String,bike_Borrow: String,bike_Return: String){
+    var station_Borrow = ""
+    var station_Return = ""
+    var station_Distance = ""
+    var station_Distance_Number = 0
+    init(station_Title: String,station_Borrow: String,station_Return: String,station_Distance: String,station_Distance_Number: Int){
         self.station_Title = station_Title
-        self.bike_Borrow = bike_Borrow
-        self.bike_Return = bike_Return
+        self.station_Borrow = station_Borrow
+        self.station_Return = station_Borrow
+        self.station_Distance = station_Distance
+        self.station_Distance_Number = station_Distance_Number
     }
 }

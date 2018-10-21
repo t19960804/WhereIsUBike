@@ -27,6 +27,7 @@ class InterNetService {
                 
                 let ubikeJSON = JSON(response.result.value!)
                 completion(ubikeJSON)
+                print(ubikeJSON)
             }else{print("error: \(response.error)")}
 
         }
@@ -34,9 +35,4 @@ class InterNetService {
 
     }
 
-//     func wrapToStruct(stationName: String){
-//        var bikeStation = BikeStationData()
-//        bikeStation.station_title = stationName
-//        stationArray.append(bikeStation)
-//    }
 }
