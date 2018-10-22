@@ -27,7 +27,7 @@ class InterNetService {
                 
                 let ubikeJSON = JSON(response.result.value!)
                 completion(ubikeJSON)
-                print(ubikeJSON)
+                
             }else{print("error: \(response.error)")}
 
         }

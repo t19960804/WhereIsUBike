@@ -77,20 +77,20 @@ class BikeListCell: UITableViewCell {
     
     func setUpConstraints(){
         stationTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
-        stationTitle.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
+        stationTitle.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 15).isActive = true
         stationTitle.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
         stationTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
         
         stationDistane.topAnchor.constraint(equalTo: self.stationTitle.bottomAnchor, constant: -3).isActive = true
-        stationDistane.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 0).isActive = true
+        stationDistane.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 15).isActive = true
         stationDistane.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.3).isActive = true
         stationDistane.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         
         labelStackView_Text.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        labelStackView_Text.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -40).isActive = true
+        labelStackView_Text.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -75).isActive = true
         
         labelStackView_Number.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        labelStackView_Number.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -5).isActive = true
+        labelStackView_Number.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -40).isActive = true
         
         
 
