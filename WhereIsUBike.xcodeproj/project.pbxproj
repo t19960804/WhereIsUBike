@@ -18,6 +18,7 @@
 		0B2A88042176E11F00115FBF /* ListStationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A88032176E11F00115FBF /* ListStationController.swift */; };
 		0B2A88062176F83800115FBF /* BikeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A88052176F83800115FBF /* BikeListCell.swift */; };
 		0B2A88082177219100115FBF /* BikeStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A88072177219100115FBF /* BikeStationData.swift */; };
+		0B4FB33C217ECD66009E5FAE /* ListStationController_Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FB33B217ECD66009E5FAE /* ListStationController_Detail.swift */; };
 		3DDEB41E70925597AB4BE983 /* Pods_WhereIsUBike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C2EFE3323E46BE0F72DCF /* Pods_WhereIsUBike.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		0B2A88032176E11F00115FBF /* ListStationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStationController.swift; sourceTree = "<group>"; };
 		0B2A88052176F83800115FBF /* BikeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeListCell.swift; sourceTree = "<group>"; };
 		0B2A88072177219100115FBF /* BikeStationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStationData.swift; sourceTree = "<group>"; };
+		0B4FB33B217ECD66009E5FAE /* ListStationController_Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStationController_Detail.swift; sourceTree = "<group>"; };
 		404C2EFE3323E46BE0F72DCF /* Pods_WhereIsUBike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhereIsUBike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58383A4ACD7E2F5011933A9A /* Pods-WhereIsUBike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereIsUBike.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhereIsUBike/Pods-WhereIsUBike.release.xcconfig"; sourceTree = "<group>"; };
 		6C6A578A72E7E97DD426B742 /* Pods-WhereIsUBike.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereIsUBike.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhereIsUBike/Pods-WhereIsUBike.debug.xcconfig"; sourceTree = "<group>"; };
@@ -107,10 +109,27 @@
 			isa = PBXGroup;
 			children = (
 				0B2A88012175D8F300115FBF /* CustomTabBarController.swift */,
-				0B2A87FB2174823C00115FBF /* MapViewController.swift */,
-				0B2A88032176E11F00115FBF /* ListStationController.swift */,
+				0B4FB339217ECD03009E5FAE /* MapViewController */,
+				0B4FB33A217ECD13009E5FAE /* ListStationController */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		0B4FB339217ECD03009E5FAE /* MapViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0B2A87FB2174823C00115FBF /* MapViewController.swift */,
+			);
+			path = MapViewController;
+			sourceTree = "<group>";
+		};
+		0B4FB33A217ECD13009E5FAE /* ListStationController */ = {
+			isa = PBXGroup;
+			children = (
+				0B2A88032176E11F00115FBF /* ListStationController.swift */,
+				0B4FB33B217ECD66009E5FAE /* ListStationController_Detail.swift */,
+			);
+			path = ListStationController;
 			sourceTree = "<group>";
 		};
 		27A4519FD1821638BAC5F60A /* Pods */ = {
@@ -252,6 +271,7 @@
 				0B2A88022175D8F300115FBF /* CustomTabBarController.swift in Sources */,
 				0B2A87FE2175891400115FBF /* InterNetService.swift in Sources */,
 				0B2A87E72172E32A00115FBF /* AppDelegate.swift in Sources */,
+				0B4FB33C217ECD66009E5FAE /* ListStationController_Detail.swift in Sources */,
 				0B2A88002175B43000115FBF /* CustomAnnotaiton.swift in Sources */,
 				0B2A88082177219100115FBF /* BikeStationData.swift in Sources */,
 			);

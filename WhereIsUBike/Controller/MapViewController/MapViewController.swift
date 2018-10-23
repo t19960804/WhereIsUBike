@@ -67,7 +67,6 @@ class MapViewController: UIViewController {
             //某些距離會多出一大段距離
             if Int(distance) >= 13150000{
                 distance = distance - 13150000
-//                distanceOfStation = "\(Int(distance / 1000))公里"
                 distanceOfStation = "\(String(format:"%.1f",distance / 1000))公里"
                 
             }else if Int(distance) >= 11610000{
@@ -75,7 +74,6 @@ class MapViewController: UIViewController {
                 distanceOfStation = "\(String(format:"%.1f",distance / 1000))公里"
             }
             else if Int(distance) >= 1000{
-//                distanceOfStation = "\(Int(distance / 1000))公里"
                 distanceOfStation = "\(String(format:"%.1f",distance / 1000))公里"
 
             }else{
@@ -115,10 +113,14 @@ extension MapViewController: CLLocationManagerDelegate{
         let mapRegion = MKCoordinateRegion.init(center: userLocation.coordinate, span: mapSpan)
         interNetSerVice.dealWithJSON { (json) in
             self.analyzeJSON(with: json)
-            guard let destination = self.tabBarController?.viewControllers![1] as? ListStationController else{
-                return
-            }
-            destination.bikeStationArray = self.bikeStationArray
+            //注意,將TabbarControoler鑲嵌進NavigattionController之後
+            //每一個獨立的NavigattionController等同之前的Viewcontroller
+            //先透過viewControllers[?]取得NavigattionController(記得轉型)
+            //轉型後再一次的viewControllers[?]取得Viewcontroller(記得轉型)
+            let navigaationController_Second = self.tabBarController?.viewControllers![1] as! UINavigationController
+            let listStationController = navigaationController_Second.viewControllers[0] as! ListStationController
+
+            listStationController.bikeStationArray = self.bikeStationArray
         }
         userMap.setRegion(mapRegion, animated: true)
        

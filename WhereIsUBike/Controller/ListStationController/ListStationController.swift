@@ -49,6 +49,7 @@ class ListStationController: UIViewController {
         bikeStationList.delegate = self
         bikeStationList.dataSource = self
         searchBar.delegate = self
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.view.addSubview(searchBar)
         self.view.addSubview(bikeStationList)
         bikeStationList.addSubview(refreshControll)
@@ -71,7 +72,7 @@ class ListStationController: UIViewController {
 
     func setUpConstraints(){
         
-        searchBar.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20).isActive = true
+        searchBar.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20 + 44).isActive = true
         searchBar.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
         searchBar.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
 
@@ -89,6 +90,7 @@ class ListStationController: UIViewController {
 
 
 }
+//MARK: - TableView設定
 extension ListStationController: UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -107,9 +109,12 @@ extension ListStationController: UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90.0
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "gotoStationDetail", sender: self)
+    }
     
 }
+//MARK: - SearchBar設定
 extension ListStationController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty{
