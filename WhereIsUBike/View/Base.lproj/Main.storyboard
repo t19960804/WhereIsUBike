@@ -28,14 +28,14 @@
             </objects>
             <point key="canvasLocation" x="2736.8000000000002" y="249.62518740629687"/>
         </scene>
-        <!--View Controller-->
+        <!--List Station Controller Detail-->
         <scene sceneID="uEA-od-N6x">
             <objects>
-                <viewController id="b5E-OQ-Ed2" sceneMemberID="viewController">
+                <viewController id="b5E-OQ-Ed2" customClass="ListStationController_Detail" customModule="WhereIsUBike" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T3X-2M-aTm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.77677877790000005" green="0.89912107240000005" blue="0.18515162060000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Wcx-85-M43"/>
                     </view>
                     <navigationItem key="navigationItem" id="lfE-jk-s1F"/>

@@ -9,4 +9,7 @@ target 'WhereIsUBike' do
 	pod 'SwiftyJSON', '~> 4.0'
 	pod 'Alamofire', '~> 4.7'
 	pod 'SVProgressHUD'
+	pod 'GoogleMaps'
+  	pod 'GooglePlaces'
+  	pod 'GooglePlacesAPI'
 end

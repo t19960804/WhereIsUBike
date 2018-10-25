@@ -56,9 +56,14 @@ class MapViewController: UIViewController {
         
     }
     func sortItemsAndAddAnnotation(with json: JSON){
+        //取得使用者當前位置
+        let user_lat = userLocation.coordinate.latitude
+        let user_lng = userLocation.coordinate.longitude
+        //解析JSON並建立物件
         for jsonObject in json.arrayValue{
             let lat = jsonObject["lat"].stringValue
             let lng = jsonObject["lng"].stringValue
+            let address = jsonObject["ar"].stringValue
             let name = jsonObject["sna"].stringValue
             let number_Borrow = jsonObject["sbi"].stringValue
             let number_Return = jsonObject["bemp"].stringValue
@@ -79,8 +84,11 @@ class MapViewController: UIViewController {
             }else{
                 distanceOfStation = "\(Int(distance))公尺"
             }
-            let station_Object = BikeStationData(station_Title: name, station_Borrow: number_Borrow, station_Return: number_Return,station_Distance: distanceOfStation,station_Distance_Number: Int(distance))
+            //參數說明 -> 車站名 / 可借還數量 / 距離當前位置距離(字串) / 距離當前位置距離(整數) / 車站經緯度 / 使用者當前經緯度
+            let station_Object = BikeStationData(station_Title: name, station_Borrow: number_Borrow, station_Return: number_Return,station_Distance: distanceOfStation,station_Distance_Number: Int(distance),station_Latitude:lat, station_Address: address,station_Longtitude:lng,userLocation_Latitude: user_lat,userLocation_Longtitude:user_lng)
+            
             bikeStationArray.append(station_Object)
+            //加入大頭針
             addAnnotations(lattitude: Double(lat) ?? 0.0, longtitude: Double(lng) ?? 0.0,stationName: name,canBorrow: number_Borrow,canReturn: number_Return,map: userMap)
             
         }
@@ -123,7 +131,6 @@ extension MapViewController: CLLocationManagerDelegate{
             listStationController.bikeStationArray = self.bikeStationArray
         }
         userMap.setRegion(mapRegion, animated: true)
-       
         
     }
 }
