@@ -14,6 +14,7 @@ import MapKit
 
 class InterNetService {
     let basicURL = "http://data.ntpc.gov.tw/od/data/api/54DDDC93-589C-4858-9C95-18B2046CC1FC?"
+    let directionURL = "https://maps.googleapis.com/maps/api/directions/json"
     let parameters = ["$format" : "json"]
     var stationArray = [BikeStationData]()
     
@@ -27,12 +28,26 @@ class InterNetService {
                 
                 let ubikeJSON = JSON(response.result.value!)
                 completion(ubikeJSON)
-                
             }else{print("error: \(response.error)")}
 
         }
 
 
+    }
+    func dealWithJSON_Direction(parameters_Direction: [String : String] , completion:@escaping (JSON) -> Void)  {
+        //reponseString -> responseJSON
+        //只有responseJSON可以用平常的方法解
+        //因為Alamofire是非同步,所以執行途中會到其他地方,我這邊等他執行結束後使用completion handler
+        Alamofire.request(directionURL,method: .get,parameters: parameters_Direction).responseJSON { response in
+            if response.result.isSuccess {
+                
+                let ubikeJSON = JSON(response.result.value!)
+                completion(ubikeJSON)
+            }else{print("error: \(response.error)")}
+            
+        }
+        
+        
     }
 
 }

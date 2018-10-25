@@ -62,7 +62,11 @@ class ListStationController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let indexPath = bikeStationList.indexPathForSelectedRow else{return}
+        let destination = segue.destination as! ListStationController_Detail
+        destination.bikeStationData = filteredStationArray[indexPath.row]
+    }
     @objc func refreshTableView(){
         bikeStationList.reloadData()
         refreshControll.endRefreshing()
@@ -76,7 +80,6 @@ class ListStationController: UIViewController {
         searchBar.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
         searchBar.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
 
-        //searchBar.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         searchBar.heightAnchor.constraint(lessThanOrEqualTo: self.view.heightAnchor, multiplier: 0.2).isActive = true
         searchBar.widthAnchor.constraint(lessThanOrEqualTo: self.view.widthAnchor, multiplier: 1).isActive = true
         
