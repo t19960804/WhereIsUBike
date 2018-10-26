@@ -63,6 +63,7 @@ class BikeListCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(15)
+        label.textColor = UIColor(red: 146 / 255, green: 154 / 255, blue: 171 / 255, alpha: 1)
         return label
     }()
     //呼叫UITableViewCell的指定建構器
