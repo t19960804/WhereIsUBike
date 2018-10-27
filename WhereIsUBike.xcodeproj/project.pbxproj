@@ -20,6 +20,8 @@
 		0B2A88082177219100115FBF /* BikeStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A88072177219100115FBF /* BikeStationData.swift */; };
 		0B4FB33C217ECD66009E5FAE /* ListStationController_Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FB33B217ECD66009E5FAE /* ListStationController_Detail.swift */; };
 		0B6F91882181AE3F003F4AD8 /* BugReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F91872181AE3F003F4AD8 /* BugReportController.swift */; };
+		0B6F918A21840D96003F4AD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B6F918921840D96003F4AD8 /* GoogleService-Info.plist */; };
+		0B6F918C21842578003F4AD8 /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F918B21842578003F4AD8 /* AlertController.swift */; };
 		3DDEB41E70925597AB4BE983 /* Pods_WhereIsUBike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C2EFE3323E46BE0F72DCF /* Pods_WhereIsUBike.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,8 @@
 		0B2A88072177219100115FBF /* BikeStationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStationData.swift; sourceTree = "<group>"; };
 		0B4FB33B217ECD66009E5FAE /* ListStationController_Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStationController_Detail.swift; sourceTree = "<group>"; };
 		0B6F91872181AE3F003F4AD8 /* BugReportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReportController.swift; sourceTree = "<group>"; };
+		0B6F918921840D96003F4AD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0B6F918B21842578003F4AD8 /* AlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		404C2EFE3323E46BE0F72DCF /* Pods_WhereIsUBike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhereIsUBike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58383A4ACD7E2F5011933A9A /* Pods-WhereIsUBike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereIsUBike.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhereIsUBike/Pods-WhereIsUBike.release.xcconfig"; sourceTree = "<group>"; };
 		6C6A578A72E7E97DD426B742 /* Pods-WhereIsUBike.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereIsUBike.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhereIsUBike/Pods-WhereIsUBike.debug.xcconfig"; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 				0B2A87E62172E32A00115FBF /* AppDelegate.swift */,
 				0B2A87ED2172E32D00115FBF /* Assets.xcassets */,
 				0B2A87F22172E32D00115FBF /* Info.plist */,
+				0B6F918921840D96003F4AD8 /* GoogleService-Info.plist */,
 			);
 			path = WhereIsUBike;
 			sourceTree = "<group>";
@@ -94,6 +99,7 @@
 				0B2A87FF2175B43000115FBF /* CustomAnnotaiton.swift */,
 				0B2A87FD2175891400115FBF /* InterNetService.swift */,
 				0B2A88052176F83800115FBF /* BikeListCell.swift */,
+				0B6F918B21842578003F4AD8 /* AlertController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -221,6 +227,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B6F918A21840D96003F4AD8 /* GoogleService-Info.plist in Resources */,
 				0B2A87F12172E32D00115FBF /* LaunchScreen.storyboard in Resources */,
 				0B2A87EE2172E32D00115FBF /* Assets.xcassets in Resources */,
 				0B2A87EC2172E32A00115FBF /* Main.storyboard in Resources */,
@@ -257,17 +264,23 @@
 				"${PODS_ROOT}/Target Support Files/Pods-WhereIsUBike/Pods-WhereIsUBike-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GooglePlacesAPI/GooglePlacesAPI.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GooglePlacesAPI.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -313,6 +326,7 @@
 				0B2A87E72172E32A00115FBF /* AppDelegate.swift in Sources */,
 				0B4FB33C217ECD66009E5FAE /* ListStationController_Detail.swift in Sources */,
 				0B2A88002175B43000115FBF /* CustomAnnotaiton.swift in Sources */,
+				0B6F918C21842578003F4AD8 /* AlertController.swift in Sources */,
 				0B6F91882181AE3F003F4AD8 /* BugReportController.swift in Sources */,
 				0B2A88082177219100115FBF /* BikeStationData.swift in Sources */,
 			);
@@ -469,7 +483,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mySwift.WhereIsUBike;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mySwift.WhereIsUBike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -488,7 +502,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = mySwift.WhereIsUBike;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mySwift.WhereIsUBike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

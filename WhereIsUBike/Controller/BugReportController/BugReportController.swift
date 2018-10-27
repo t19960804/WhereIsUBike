@@ -7,8 +7,12 @@
 //
 
 import UIKit
-
+import Firebase
+import FirebaseDatabase
 class BugReportController: UIViewController {
+    var ref: DatabaseReference!
+
+
     let backGroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -75,7 +79,7 @@ class BugReportController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.placeholder = "請輸入"
         textField.font = textField.font?.withSize(20)
-        textField.layer.borderWidth = 2
+        textField.layer.borderWidth = 2.5
         textField.layer.borderColor = UIColor(red: 146 / 255, green: 154 / 255, blue: 171 / 255, alpha: 1).cgColor
         textField.layer.cornerRadius = 5
         //textField.backgroundColor = UIColor.red
@@ -88,7 +92,6 @@ class BugReportController: UIViewController {
         return stackView
     }()
     /////
-
     let bugDiscription_Label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -98,18 +101,18 @@ class BugReportController: UIViewController {
         label.textColor = UIColor(red: 146 / 255, green: 154 / 255, blue: 171 / 255, alpha: 1)
         return label
     }()
-    
     let bugDiscription_TextView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.font = .systemFont(ofSize: 18)
+        //以下無法改變字型大小
         //textView.font = textView.font?.withSize(18)
-        //textView.backgroundColor = UIColor.red
-        textView.layer.borderWidth = 2
+        textView.layer.borderWidth = 2.5
         textView.layer.borderColor = UIColor(red: 146 / 255, green: 154 / 255, blue: 171 / 255, alpha: 1).cgColor
         textView.layer.cornerRadius = 5
         return textView
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bugDiscription_TextView.delegate = self
@@ -120,9 +123,36 @@ class BugReportController: UIViewController {
         backGroundView.addSubview(bugDiscription_Label)
         backGroundView.addSubview(bugDiscription_TextView)
         setUpConstraints()
+        
     }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(uploadToFirebase))
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    @objc func uploadToFirebase(){
+        guard let bug_Date = bugDate_Button.titleLabel?.text else{return}
+        guard let bug_Title = bugTitle_TextField.text else{return}
+        guard let bug_Description = bugDiscription_TextView.text else{return}
+        if bug_Date != "請選擇" && bug_Title != "" && bug_Description != ""{
+            //FireBase根節點
+            ref = Database.database().reference()
+            //如果沒有獨一無二的AutoId,一旦發現同樣的節點就會直接覆蓋
+            ref.child("Bug回報").childByAutoId().child("\(bug_Date)").setValue(["\(bug_Title)": "\(bug_Description)"])
+            AlertController.showBasicAlert(viewController: self, title: "感謝您的回報!", message: "我們會盡快改進")
+            clearUserInput()
+        }else{
+            AlertController.showBasicAlert(viewController: self, title: "尚有欄位未填寫", message: "請繼續輸入")
+        }
+        
+    }
+    func clearUserInput(){
+        bugDate_Button.setTitle("請選擇", for: UIControl.State.normal)
+        bugTitle_TextField.text = ""
+        bugDiscription_TextView.text = ""
     }
     //MARK: - DatePicker處理
     @objc func showDatePicker(){
@@ -164,14 +194,12 @@ class BugReportController: UIViewController {
         /////
         bugDate_StackView.topAnchor.constraint(equalTo: backGroundView.topAnchor, constant: 30).isActive = true
         bugDate_StackView.heightAnchor.constraint(equalTo: backGroundView.heightAnchor, multiplier: 0.1).isActive = true
-//        bugDate_StackView.widthAnchor.constraint(equalTo: backGroundView.widthAnchor, multiplier: 0.9).isActive = true
         bugDate_StackView.widthAnchor.constraint(equalTo: backGroundView.widthAnchor, multiplier: 0.65).isActive = true
 
         bugDate_StackView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10).isActive = true
         
         bugDate_Label.widthAnchor.constraint(lessThanOrEqualTo: bugDate_StackView.widthAnchor, multiplier: 0.25).isActive = true
-//        bugDate_Label.widthAnchor.constraint(lessThanOrEqualTo: bugDate_StackView.widthAnchor, multiplier: 0.2).isActive = true
-//        bugDate_Button.widthAnchor.constraint(lessThanOrEqualTo: bugDate_StackView.widthAnchor, multiplier: 0.78).isActive = true
+
 
         bugDate_Button.widthAnchor.constraint(lessThanOrEqualTo: bugDate_StackView.widthAnchor, multiplier: 0.75).isActive = true
         /////
@@ -213,3 +241,4 @@ extension BugReportController: UITextFieldDelegate{
         textField.layer.borderColor = UIColor(red: 146 / 255, green: 154 / 255, blue: 171 / 255, alpha: 1).cgColor
     }
 }
+

@@ -155,11 +155,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Xtn-Wl-G9u"/>
                     </view>
-                    <navigationItem key="navigationItem" title="問題回報" id="15E-Nd-grH">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="yrJ-4s-xy1">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="問題回報" id="15E-Nd-grH"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dcR-VI-f95" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

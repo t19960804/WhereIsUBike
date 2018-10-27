@@ -12,4 +12,8 @@ target 'WhereIsUBike' do
 	pod 'GoogleMaps'
   	pod 'GooglePlaces'
   	pod 'GooglePlacesAPI'
+	pod 'Firebase/Core'
+	pod 'Firebase/Database'
+
+
 end
