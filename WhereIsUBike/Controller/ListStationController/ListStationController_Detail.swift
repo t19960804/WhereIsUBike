@@ -97,7 +97,7 @@ class ListStationController_Detail: UIViewController,GMSMapViewDelegate {
         showGoogleMap(lat: user_Latitude, lng: user_Longtitude)
         createMarker_Begin(lat: user_Latitude, lng: user_Longtitude)
         createMarker_End(lat: Double(station_Latitude)!, lng: Double(station_Longtitude)!)
-        let parameters_Direction = ["key" : self.testKey,
+        let parameters_Direction = ["key" : self.apiKey,
                                      "mode" : "walking",
                                      "alternatives" : "true",
                                      "origin" : "\(user_Latitude),\(user_Longtitude)",

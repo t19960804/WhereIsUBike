@@ -76,7 +76,7 @@ class ListStationController: UIViewController {
 
     func setUpConstraints(){
         
-        searchBar.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20 + 44).isActive = true
+        searchBar.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20 + 44 ).isActive = true
         searchBar.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
         searchBar.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
 
