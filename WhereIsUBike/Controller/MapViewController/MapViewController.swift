@@ -10,6 +10,8 @@
 import UIKit
 import MapKit
 import SwiftyJSON
+import SVProgressHUD
+
 class MapViewController: UIViewController {
     var locationManager = CLLocationManager()
     var interNetSerVice = InterNetService()
@@ -33,15 +35,16 @@ class MapViewController: UIViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
             locationManager.startUpdatingLocation()
         }
-        
-        interNetSerVice.dealWithJSON { (json) in
+        interNetSerVice.dealWithJSON(completion: { (json) in
+            SVProgressHUD.show(withStatus: "取得位置中")
             self.analyzeJSON(with: json)
             
             guard let destination = self.tabBarController?.viewControllers![1] as? ListStationController else{
                 return
             }
             destination.bikeStationArray = self.bikeStationArray
-        }
+        }, controller: self)
+
     }
     
     func analyzeJSON(with json: JSON) {
@@ -50,8 +53,12 @@ class MapViewController: UIViewController {
         if bikeStationArray.isEmpty == false{
             bikeStationArray.removeAll()
             sortItemsAndAddAnnotation(with: json)
+            SVProgressHUD.dismiss()
+
         }else{
             sortItemsAndAddAnnotation(with: json)
+            SVProgressHUD.dismiss()
+
         }
         
     }
@@ -119,7 +126,7 @@ extension MapViewController: CLLocationManagerDelegate{
         let mapSpan = MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta:0.003 )
         
         let mapRegion = MKCoordinateRegion.init(center: userLocation.coordinate, span: mapSpan)
-        interNetSerVice.dealWithJSON { (json) in
+        interNetSerVice.dealWithJSON(completion: { (json) in
             self.analyzeJSON(with: json)
             //注意,將TabbarControoler鑲嵌進NavigattionController之後
             //每一個獨立的NavigattionController等同之前的Viewcontroller
@@ -127,9 +134,20 @@ extension MapViewController: CLLocationManagerDelegate{
             //轉型後再一次的viewControllers[?]取得Viewcontroller(記得轉型)
             let navigaationController_Second = self.tabBarController?.viewControllers![1] as! UINavigationController
             let listStationController = navigaationController_Second.viewControllers[0] as! ListStationController
-
+            
             listStationController.bikeStationArray = self.bikeStationArray
-        }
+        }, controller: self)
+//        interNetSerVice.dealWithJSON { (json) in
+//            self.analyzeJSON(with: json)
+//            //注意,將TabbarControoler鑲嵌進NavigattionController之後
+//            //每一個獨立的NavigattionController等同之前的Viewcontroller
+//            //先透過viewControllers[?]取得NavigattionController(記得轉型)
+//            //轉型後再一次的viewControllers[?]取得Viewcontroller(記得轉型)
+//            let navigaationController_Second = self.tabBarController?.viewControllers![1] as! UINavigationController
+//            let listStationController = navigaationController_Second.viewControllers[0] as! ListStationController
+//
+//            listStationController.bikeStationArray = self.bikeStationArray
+//        }
         userMap.setRegion(mapRegion, animated: true)
         
     }
