@@ -19,7 +19,7 @@ class InterNetService {
     var stationArray = [BikeStationData]()
     
     
-    func dealWithJSON(completion:@escaping (JSON) -> Void)  {
+    func dealWithJSON(completion:@escaping (JSON) -> Void,controller: UIViewController)  {
         //reponseString -> responseJSON
         //只有responseJSON可以用平常的方法解
         //因為Alamofire是非同步,所以執行途中會到其他地方,我這邊等他執行結束後使用completion handler
@@ -28,7 +28,14 @@ class InterNetService {
                 
                 let ubikeJSON = JSON(response.result.value!)
                 completion(ubikeJSON)
-            }else{print("error: \(response.error)")}
+            }else{
+               let errorCode = (response.error! as NSError).code
+                if errorCode == -1009{
+                    self.showAlert(title: "請檢查網路", with: controller)
+                }else{
+                    self.showAlert(title: "稍後再試", with: controller)
+                }
+            }
 
         }
 
@@ -49,5 +56,8 @@ class InterNetService {
         
         
     }
-
+    func showAlert(title: String, with controller: UIViewController){
+        let alert = Alert(message: "出現錯誤", title: title, with: controller )
+        alert.alert_InterNet()
+    }
 }

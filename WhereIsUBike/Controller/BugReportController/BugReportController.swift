@@ -12,7 +12,6 @@ import FirebaseDatabase
 class BugReportController: UIViewController {
     var ref: DatabaseReference!
 
-
     let backGroundView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -33,10 +32,10 @@ class BugReportController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("請選擇", for: UIControl.State.normal)
         button.setTitleColor(UIColor.black, for: UIControl.State.normal)
+        button.setTitleColor(UIColor(red: 50 / 255, green: 137 / 255, blue: 199 / 255, alpha: 1), for: UIControl.State.normal)
         button.contentHorizontalAlignment = .center
         button.titleLabel?.font = .systemFont(ofSize: 20)
         button.addTarget(self, action: #selector(showDatePicker), for: UIControl.Event.touchUpInside)
-        //button.backgroundColor = UIColor.gray
         return button
     }()
     let datePicker: UIDatePicker = {
@@ -44,6 +43,9 @@ class BugReportController: UIViewController {
         let localLanguage = Locale(identifier: "zh")
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.datePickerMode = .date
+        picker.backgroundColor = UIColor(red: 50 / 255, green: 137 / 255, blue: 199 / 255, alpha: 1)
+        picker.layer.cornerRadius = 10
+        picker.layer.masksToBounds = true
         //設定中文
         picker.locale = localLanguage
         picker.addTarget(self, action: #selector(pickerValueChanged), for: UIControl.Event.valueChanged)
@@ -52,7 +54,7 @@ class BugReportController: UIViewController {
     let close_DatePicker: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "cancel"), for: UIControl.State.normal)
+        button.setImage(UIImage(named: "cancel2"), for: UIControl.State.normal)
         button.addTarget(self, action: #selector(closeDatePicker), for: UIControl.Event.touchUpInside)
         return button
     }()
@@ -123,6 +125,9 @@ class BugReportController: UIViewController {
         backGroundView.addSubview(bugDiscription_Label)
         backGroundView.addSubview(bugDiscription_TextView)
         setUpConstraints()
+        //在Closure裡面沒有用
+        datePicker.setValue(UIColor.white, forKeyPath: "textColor")
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -142,10 +147,11 @@ class BugReportController: UIViewController {
             ref = Database.database().reference()
             //如果沒有獨一無二的AutoId,一旦發現同樣的節點就會直接覆蓋
             ref.child("Bug回報").childByAutoId().child("\(bug_Date)").setValue(["\(bug_Title)": "\(bug_Description)"])
-            AlertController.showBasicAlert(viewController: self, title: "感謝您的回報!", message: "我們會盡快改進")
+            showAlert(message: "我們會盡快改進", title: "感謝您的回報!", controller: self)
             clearUserInput()
         }else{
-            AlertController.showBasicAlert(viewController: self, title: "尚有欄位未填寫", message: "請繼續輸入")
+            showAlert(message: "請繼續輸入", title: "尚有欄位未填寫", controller: self)
+
         }
         
     }
@@ -168,11 +174,14 @@ class BugReportController: UIViewController {
         datePicker.heightAnchor.constraint(lessThanOrEqualTo: self.view.heightAnchor, multiplier: 0.5).isActive = true
         datePicker.widthAnchor.constraint(lessThanOrEqualTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
         
-        close_DatePicker.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: 10).isActive = true
-        close_DatePicker.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -50).isActive = true
+        close_DatePicker.leftAnchor.constraint(equalTo: datePicker.rightAnchor, constant: 0).isActive = true
+
+        close_DatePicker.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: 0).isActive = true
+        //close_DatePicker.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -50).isActive = true
         close_DatePicker.heightAnchor.constraint(lessThanOrEqualTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
         close_DatePicker.widthAnchor.constraint(lessThanOrEqualTo: self.view.widthAnchor, multiplier: 0.1).isActive = true
-        
+        //元件不可按
+        isEnabledComponents(with: false)
     }
     @objc func pickerValueChanged(){
         let format = DateFormatter()
@@ -183,6 +192,7 @@ class BugReportController: UIViewController {
     @objc func closeDatePicker(){
         self.datePicker.removeFromSuperview()
         self.close_DatePicker.removeFromSuperview()
+        isEnabledComponents(with: true)
     }
     //MARK: - Constraints處理
     func setUpConstraints(){
@@ -221,7 +231,14 @@ class BugReportController: UIViewController {
         bugDiscription_TextView.widthAnchor.constraint(equalTo: backGroundView.widthAnchor, multiplier: 0.85).isActive = true
 
     }
-
+    func showAlert(message: String,title: String,controller: UIViewController){
+        let alert = Alert(message: message, title: title, with: controller)
+        alert.alert_BugReport()
+    }
+    func isEnabledComponents(with result: Bool){
+        bugTitle_TextField.isEnabled = result
+        bugDiscription_TextView.isEditable = result
+    }
 
 }
 extension BugReportController: UITextViewDelegate{

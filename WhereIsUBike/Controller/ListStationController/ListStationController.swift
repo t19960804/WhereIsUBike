@@ -9,14 +9,13 @@
 import UIKit
 import SwiftyJSON
 import MapKit
-
+import SVProgressHUD
 class ListStationController: UIViewController {
-    let interNetService = InterNetService()
     
     var bikeStationArray = [BikeStationData](){
         didSet{
+            
             bikeStationList.reloadData()
-            //
             filteredStationArray = bikeStationArray
         }
     }
@@ -45,6 +44,7 @@ class ListStationController: UIViewController {
         return bar
     }()
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         bikeStationList.delegate = self
         bikeStationList.dataSource = self
