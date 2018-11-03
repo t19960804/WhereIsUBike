@@ -15,5 +15,8 @@ target 'WhereIsUBike' do
 	pod 'Firebase/Core'
 	pod 'Firebase/Database'
 
-
+	target 'WhereIsUBikeTests' do
+        inherit! :search_paths
+        pod 'Firebase'
+    end
 end

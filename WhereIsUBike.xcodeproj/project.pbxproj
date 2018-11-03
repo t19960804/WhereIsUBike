@@ -22,8 +22,21 @@
 		0B6F91882181AE3F003F4AD8 /* BugReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F91872181AE3F003F4AD8 /* BugReportController.swift */; };
 		0B6F918A21840D96003F4AD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B6F918921840D96003F4AD8 /* GoogleService-Info.plist */; };
 		0B6F918E21855DF1003F4AD8 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F918D21855DF1003F4AD8 /* Alert.swift */; };
+		0B6F919421895252003F4AD8 /* UIcolorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F919321895252003F4AD8 /* UIcolorExtension.swift */; };
+		0B6F91CC2189AC18003F4AD8 /* WhereIsUBikeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F91CB2189AC18003F4AD8 /* WhereIsUBikeTests.swift */; };
 		3DDEB41E70925597AB4BE983 /* Pods_WhereIsUBike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C2EFE3323E46BE0F72DCF /* Pods_WhereIsUBike.framework */; };
+		C833BDA8816E154A2846CA83 /* Pods_WhereIsUBikeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F03612D03465D21669AD5B /* Pods_WhereIsUBikeTests.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0B6F91CE2189AC18003F4AD8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0B2A87DB2172E32A00115FBF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0B2A87E22172E32A00115FBF;
+			remoteInfo = WhereIsUBike;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0B2A87E32172E32A00115FBF /* WhereIsUBike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhereIsUBike.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,9 +56,16 @@
 		0B6F91872181AE3F003F4AD8 /* BugReportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReportController.swift; sourceTree = "<group>"; };
 		0B6F918921840D96003F4AD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0B6F918D21855DF1003F4AD8 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		0B6F919321895252003F4AD8 /* UIcolorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIcolorExtension.swift; sourceTree = "<group>"; };
+		0B6F91C92189AC18003F4AD8 /* WhereIsUBikeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhereIsUBikeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B6F91CB2189AC18003F4AD8 /* WhereIsUBikeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereIsUBikeTests.swift; sourceTree = "<group>"; };
+		0B6F91CD2189AC18003F4AD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0CA3C7706734D68FE77F3463 /* Pods-WhereIsUBikeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereIsUBikeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhereIsUBikeTests/Pods-WhereIsUBikeTests.release.xcconfig"; sourceTree = "<group>"; };
+		24BD677E60E06612BFA900AA /* Pods-WhereIsUBikeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereIsUBikeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhereIsUBikeTests/Pods-WhereIsUBikeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		404C2EFE3323E46BE0F72DCF /* Pods_WhereIsUBike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhereIsUBike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58383A4ACD7E2F5011933A9A /* Pods-WhereIsUBike.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereIsUBike.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhereIsUBike/Pods-WhereIsUBike.release.xcconfig"; sourceTree = "<group>"; };
 		6C6A578A72E7E97DD426B742 /* Pods-WhereIsUBike.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereIsUBike.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhereIsUBike/Pods-WhereIsUBike.debug.xcconfig"; sourceTree = "<group>"; };
+		A7F03612D03465D21669AD5B /* Pods_WhereIsUBikeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhereIsUBikeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +77,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0B6F91C62189AC18003F4AD8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C833BDA8816E154A2846CA83 /* Pods_WhereIsUBikeTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -64,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				0B2A87E52172E32A00115FBF /* WhereIsUBike */,
+				0B6F91CA2189AC18003F4AD8 /* WhereIsUBikeTests */,
 				0B2A87E42172E32A00115FBF /* Products */,
 				27A4519FD1821638BAC5F60A /* Pods */,
 				9179EE88EAC83547173019FF /* Frameworks */,
@@ -74,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				0B2A87E32172E32A00115FBF /* WhereIsUBike.app */,
+				0B6F91C92189AC18003F4AD8 /* WhereIsUBikeTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,6 +130,7 @@
 				0B2A87FD2175891400115FBF /* InterNetService.swift */,
 				0B2A88052176F83800115FBF /* BikeListCell.swift */,
 				0B6F918D21855DF1003F4AD8 /* Alert.swift */,
+				0B6F919321895252003F4AD8 /* UIcolorExtension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -149,11 +180,22 @@
 			path = BugReportController;
 			sourceTree = "<group>";
 		};
+		0B6F91CA2189AC18003F4AD8 /* WhereIsUBikeTests */ = {
+			isa = PBXGroup;
+			children = (
+				0B6F91CB2189AC18003F4AD8 /* WhereIsUBikeTests.swift */,
+				0B6F91CD2189AC18003F4AD8 /* Info.plist */,
+			);
+			path = WhereIsUBikeTests;
+			sourceTree = "<group>";
+		};
 		27A4519FD1821638BAC5F60A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				6C6A578A72E7E97DD426B742 /* Pods-WhereIsUBike.debug.xcconfig */,
 				58383A4ACD7E2F5011933A9A /* Pods-WhereIsUBike.release.xcconfig */,
+				24BD677E60E06612BFA900AA /* Pods-WhereIsUBikeTests.debug.xcconfig */,
+				0CA3C7706734D68FE77F3463 /* Pods-WhereIsUBikeTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -162,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				404C2EFE3323E46BE0F72DCF /* Pods_WhereIsUBike.framework */,
+				A7F03612D03465D21669AD5B /* Pods_WhereIsUBikeTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -189,6 +232,26 @@
 			productReference = 0B2A87E32172E32A00115FBF /* WhereIsUBike.app */;
 			productType = "com.apple.product-type.application";
 		};
+		0B6F91C82189AC18003F4AD8 /* WhereIsUBikeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0B6F91D22189AC18003F4AD8 /* Build configuration list for PBXNativeTarget "WhereIsUBikeTests" */;
+			buildPhases = (
+				627635C1A8D81495FD8AF8B6 /* [CP] Check Pods Manifest.lock */,
+				0B6F91C52189AC18003F4AD8 /* Sources */,
+				0B6F91C62189AC18003F4AD8 /* Frameworks */,
+				0B6F91C72189AC18003F4AD8 /* Resources */,
+				FB7C1D488E626E05B6144C34 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0B6F91CF2189AC18003F4AD8 /* PBXTargetDependency */,
+			);
+			name = WhereIsUBikeTests;
+			productName = WhereIsUBikeTests;
+			productReference = 0B6F91C92189AC18003F4AD8 /* WhereIsUBikeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -201,6 +264,10 @@
 				TargetAttributes = {
 					0B2A87E22172E32A00115FBF = {
 						CreatedOnToolsVersion = 10.0;
+					};
+					0B6F91C82189AC18003F4AD8 = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 0B2A87E22172E32A00115FBF;
 					};
 				};
 			};
@@ -218,6 +285,7 @@
 			projectRoot = "";
 			targets = (
 				0B2A87E22172E32A00115FBF /* WhereIsUBike */,
+				0B6F91C82189AC18003F4AD8 /* WhereIsUBikeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -234,9 +302,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0B6F91C72189AC18003F4AD8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		627635C1A8D81495FD8AF8B6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WhereIsUBikeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B639EA503F05DA68B42B4106 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -311,6 +408,30 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhereIsUBike/Pods-WhereIsUBike-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FB7C1D488E626E05B6144C34 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WhereIsUBikeTests/Pods-WhereIsUBikeTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhereIsUBikeTests/Pods-WhereIsUBikeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -325,6 +446,7 @@
 				0B2A87FE2175891400115FBF /* InterNetService.swift in Sources */,
 				0B2A87E72172E32A00115FBF /* AppDelegate.swift in Sources */,
 				0B6F918E21855DF1003F4AD8 /* Alert.swift in Sources */,
+				0B6F919421895252003F4AD8 /* UIcolorExtension.swift in Sources */,
 				0B4FB33C217ECD66009E5FAE /* ListStationController_Detail.swift in Sources */,
 				0B2A88002175B43000115FBF /* CustomAnnotaiton.swift in Sources */,
 				0B6F91882181AE3F003F4AD8 /* BugReportController.swift in Sources */,
@@ -332,7 +454,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		0B6F91C52189AC18003F4AD8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B6F91CC2189AC18003F4AD8 /* WhereIsUBikeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0B6F91CF2189AC18003F4AD8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0B2A87E22172E32A00115FBF /* WhereIsUBike */;
+			targetProxy = 0B6F91CE2189AC18003F4AD8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		0B2A87EA2172E32A00115FBF /* Main.storyboard */ = {
@@ -486,7 +624,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mySwift.WhereIsUBike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -505,7 +643,47 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mySwift.WhereIsUBike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		0B6F91D02189AC18003F4AD8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24BD677E60E06612BFA900AA /* Pods-WhereIsUBikeTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WhereIsUBikeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = mySwift.WhereIsUBikeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WhereIsUBike.app/WhereIsUBike";
+			};
+			name = Debug;
+		};
+		0B6F91D12189AC18003F4AD8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CA3C7706734D68FE77F3463 /* Pods-WhereIsUBikeTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WhereIsUBikeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = mySwift.WhereIsUBikeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WhereIsUBike.app/WhereIsUBike";
 			};
 			name = Release;
 		};
@@ -526,6 +704,15 @@
 			buildConfigurations = (
 				0B2A87F62172E32D00115FBF /* Debug */,
 				0B2A87F72172E32D00115FBF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0B6F91D22189AC18003F4AD8 /* Build configuration list for PBXNativeTarget "WhereIsUBikeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0B6F91D02189AC18003F4AD8 /* Debug */,
+				0B6F91D12189AC18003F4AD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

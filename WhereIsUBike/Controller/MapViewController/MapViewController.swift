@@ -75,24 +75,21 @@ class MapViewController: UIViewController {
             let number_Borrow = jsonObject["sbi"].stringValue
             let number_Return = jsonObject["bemp"].stringValue
             //計算兩點距離
-            var distance = userLocation.distance(from: CLLocation(latitude: Double(lat) ?? 0.0, longitude: Double(lng) ?? 0.0))
+            var distance = Double(userLocation.distance(from: CLLocation(latitude: Double(lat) ?? 0.0, longitude: Double(lng) ?? 0.0)))
             //某些距離會多出一大段距離
-            if Int(distance) >= 13150000{
-                distance = distance - 13150000
+            if  distance >= 13150000{
+                distance -= 13150000
                 distanceOfStation = "\(String(format:"%.1f",distance / 1000))公里"
-                
-            }else if Int(distance) >= 11610000{
-                distance = distance - 11610000
+            }else if distance >= 11610000{
+                distance -= 11610000
                 distanceOfStation = "\(String(format:"%.1f",distance / 1000))公里"
-            }
-            else if Int(distance) >= 1000{
+            }else if distance >= 1000{
                 distanceOfStation = "\(String(format:"%.1f",distance / 1000))公里"
-
             }else{
-                distanceOfStation = "\(Int(distance))公尺"
+                distanceOfStation = "\(String(format:"%.1f",distance))公尺"
             }
             //參數說明 -> 車站名 / 可借還數量 / 距離當前位置距離(字串) / 距離當前位置距離(整數) / 車站經緯度 / 使用者當前經緯度
-            let station_Object = BikeStationData(station_Title: name, station_Borrow: number_Borrow, station_Return: number_Return,station_Distance: distanceOfStation,station_Distance_Number: Int(distance),station_Latitude:lat, station_Address: address,station_Longtitude:lng,userLocation_Latitude: user_lat,userLocation_Longtitude:user_lng)
+            let station_Object = BikeStationData(station_Title: name, station_Borrow: number_Borrow, station_Return: number_Return,station_Distance: distanceOfStation,station_Distance_Number: distance,station_Latitude:lat, station_Address: address,station_Longtitude:lng,userLocation_Latitude: user_lat,userLocation_Longtitude:user_lng)
             
             bikeStationArray.append(station_Object)
             //加入大頭針
@@ -104,6 +101,7 @@ class MapViewController: UIViewController {
             return stationData1.station_Distance_Number < stationData2.station_Distance_Number
         }
     }
+    
     func addAnnotations(lattitude: Double,longtitude: Double,stationName: String,canBorrow: String,canReturn: String,map: MKMapView){
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: lattitude , longitude: longtitude)

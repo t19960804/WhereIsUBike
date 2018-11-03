@@ -12,7 +12,7 @@ class CustomTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBar.unselectedItemTintColor = UIColor(red: 202/255, green: 202/255, blue: 202/255, alpha: 1)
+        tabBar.unselectedItemTintColor = UIColor.grayColor_TabBarItemUnselected
     }
     
 

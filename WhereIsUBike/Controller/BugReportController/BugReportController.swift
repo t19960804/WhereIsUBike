@@ -23,8 +23,7 @@ class BugReportController: UIViewController {
         label.textAlignment = .center
         label.text = "日期"
         label.font = label.font.withSize(20)
-        label.textColor = UIColor(red: 146 / 255, green: 154 / 255, blue: 171 / 255, alpha: 1)
-        //label.backgroundColor = UIColor.red
+        label.textColor = UIColor.grayColor_Normal
         return label
     }()
     let bugDate_Button: UIButton = {
@@ -32,7 +31,7 @@ class BugReportController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("請選擇", for: UIControl.State.normal)
         button.setTitleColor(UIColor.black, for: UIControl.State.normal)
-        button.setTitleColor(UIColor(red: 50 / 255, green: 137 / 255, blue: 199 / 255, alpha: 1), for: UIControl.State.normal)
+        button.setTitleColor(UIColor.blueColor_Theme, for: UIControl.State.normal)
         button.contentHorizontalAlignment = .center
         button.titleLabel?.font = .systemFont(ofSize: 20)
         button.addTarget(self, action: #selector(showDatePicker), for: UIControl.Event.touchUpInside)
@@ -43,7 +42,7 @@ class BugReportController: UIViewController {
         let localLanguage = Locale(identifier: "zh")
         picker.translatesAutoresizingMaskIntoConstraints = false
         picker.datePickerMode = .date
-        picker.backgroundColor = UIColor(red: 50 / 255, green: 137 / 255, blue: 199 / 255, alpha: 1)
+        picker.backgroundColor = UIColor.blueColor_Theme
         picker.layer.cornerRadius = 10
         picker.layer.masksToBounds = true
         //設定中文
@@ -66,28 +65,29 @@ class BugReportController: UIViewController {
     }()
     /////
     let bugTitle_Label: UILabel = {
+        
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.text = "標題"
         label.font = label.font.withSize(20)
-        label.textColor = UIColor(red: 146 / 255, green: 154 / 255, blue: 171 / 255, alpha: 1)
-        //label.backgroundColor = UIColor.orange
+        label.textColor = UIColor.grayColor_Normal
         return label
     }()
     let bugTitle_TextField: UITextField = {
+        
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.borderStyle = .roundedRect
         textField.placeholder = "請輸入"
         textField.font = textField.font?.withSize(20)
         textField.layer.borderWidth = 2.5
-        textField.layer.borderColor = UIColor(red: 146 / 255, green: 154 / 255, blue: 171 / 255, alpha: 1).cgColor
+        textField.layer.borderColor = UIColor.grayColor_Normal.cgColor
         textField.layer.cornerRadius = 5
-        //textField.backgroundColor = UIColor.red
         return textField
     }()
     lazy var bugTitle_StackView: UIStackView = {
+        
         let stackView = UIStackView(arrangedSubviews: [bugTitle_Label,bugTitle_TextField])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
@@ -100,7 +100,7 @@ class BugReportController: UIViewController {
         label.textAlignment = .center
         label.text = "問題敘述"
         label.font = label.font.withSize(20)
-        label.textColor = UIColor(red: 146 / 255, green: 154 / 255, blue: 171 / 255, alpha: 1)
+        label.textColor = UIColor.grayColor_Normal
         return label
     }()
     let bugDiscription_TextView: UITextView = {
@@ -110,12 +110,13 @@ class BugReportController: UIViewController {
         //以下無法改變字型大小
         //textView.font = textView.font?.withSize(18)
         textView.layer.borderWidth = 2.5
-        textView.layer.borderColor = UIColor(red: 146 / 255, green: 154 / 255, blue: 171 / 255, alpha: 1).cgColor
+        textView.layer.borderColor = UIColor.grayColor_Normal.cgColor
         textView.layer.cornerRadius = 5
         return textView
     }()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         bugDiscription_TextView.delegate = self
         bugTitle_TextField.delegate = self
@@ -164,22 +165,7 @@ class BugReportController: UIViewController {
     @objc func showDatePicker(){
         self.view.addSubview(datePicker)
         self.view.addSubview(close_DatePicker)
-        datePicker.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        datePicker.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        datePicker.heightAnchor.constraint(lessThanOrEqualTo: self.view.heightAnchor, multiplier: 0.5).isActive = true
-        datePicker.widthAnchor.constraint(lessThanOrEqualTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
-        
-        datePicker.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        datePicker.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
-        datePicker.heightAnchor.constraint(lessThanOrEqualTo: self.view.heightAnchor, multiplier: 0.5).isActive = true
-        datePicker.widthAnchor.constraint(lessThanOrEqualTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
-        
-        close_DatePicker.leftAnchor.constraint(equalTo: datePicker.rightAnchor, constant: 0).isActive = true
-
-        close_DatePicker.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: 0).isActive = true
-        //close_DatePicker.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -50).isActive = true
-        close_DatePicker.heightAnchor.constraint(lessThanOrEqualTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
-        close_DatePicker.widthAnchor.constraint(lessThanOrEqualTo: self.view.widthAnchor, multiplier: 0.1).isActive = true
+        setUpDatePickerConstraints()
         //元件不可按
         isEnabledComponents(with: false)
     }
@@ -231,6 +217,23 @@ class BugReportController: UIViewController {
         bugDiscription_TextView.widthAnchor.constraint(equalTo: backGroundView.widthAnchor, multiplier: 0.85).isActive = true
 
     }
+    func setUpDatePickerConstraints(){
+        datePicker.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        datePicker.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        datePicker.heightAnchor.constraint(lessThanOrEqualTo: self.view.heightAnchor, multiplier: 0.5).isActive = true
+        datePicker.widthAnchor.constraint(lessThanOrEqualTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
+        
+        datePicker.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        datePicker.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        datePicker.heightAnchor.constraint(lessThanOrEqualTo: self.view.heightAnchor, multiplier: 0.5).isActive = true
+        datePicker.widthAnchor.constraint(lessThanOrEqualTo: self.view.widthAnchor, multiplier: 0.9).isActive = true
+        
+        close_DatePicker.leftAnchor.constraint(equalTo: datePicker.rightAnchor, constant: 0).isActive = true
+        
+        close_DatePicker.bottomAnchor.constraint(equalTo: datePicker.topAnchor, constant: 0).isActive = true
+        close_DatePicker.heightAnchor.constraint(lessThanOrEqualTo: self.view.heightAnchor, multiplier: 0.1).isActive = true
+        close_DatePicker.widthAnchor.constraint(lessThanOrEqualTo: self.view.widthAnchor, multiplier: 0.1).isActive = true
+    }
     func showAlert(message: String,title: String,controller: UIViewController){
         let alert = Alert(message: message, title: title, with: controller)
         alert.alert_BugReport()
@@ -243,19 +246,19 @@ class BugReportController: UIViewController {
 }
 extension BugReportController: UITextViewDelegate{
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.layer.borderColor = UIColor(red: 50 / 255, green: 137 / 255, blue: 199 / 255, alpha: 1).cgColor
+        textView.layer.borderColor = UIColor.blueColor_Theme.cgColor
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        textView.layer.borderColor = UIColor(red: 146 / 255, green: 154 / 255, blue: 171 / 255, alpha: 1).cgColor
+        textView.layer.borderColor = UIColor.grayColor_Normal.cgColor
     }
 }
 extension BugReportController: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor(red: 50 / 255, green: 137 / 255, blue: 199 / 255, alpha: 1).cgColor
+        textField.layer.borderColor = UIColor.blueColor_Theme.cgColor
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.layer.borderColor = UIColor(red: 146 / 255, green: 154 / 255, blue: 171 / 255, alpha: 1).cgColor
+        textField.layer.borderColor = UIColor.grayColor_Normal.cgColor
     }
 }
 

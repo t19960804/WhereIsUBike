@@ -31,7 +31,7 @@ class ListStationController: UIViewController {
     }()
     let refreshControll: UIRefreshControl = {
         let controll = UIRefreshControl()
-        controll.tintColor = UIColor(red: 50/255, green: 137/255, blue: 199/255, alpha: 1)
+        controll.tintColor = UIColor.blueColor_Theme
         controll.addTarget(self, action: #selector(refreshTableView), for: UIControl.Event.valueChanged)
         return controll
     }()
@@ -39,7 +39,7 @@ class ListStationController: UIViewController {
         let bar = UISearchBar()
         bar.translatesAutoresizingMaskIntoConstraints = false
         bar.placeholder = "Search...."
-        bar.barTintColor = UIColor(red: 50/255, green: 137/255, blue: 199/255, alpha: 1)
+        bar.barTintColor = UIColor.blueColor_Theme
         
         return bar
     }()

@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,15 +14,39 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UBike-background" translatesAutoresizingMaskIntoConstraints="NO" id="Nle-58-K4P">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bicycle-rider-launch" translatesAutoresizingMaskIntoConstraints="NO" id="e7Q-Mz-yuh">
+                                <rect key="frame" x="52" y="200.66666666666663" width="310" height="335"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="e7Q-Mz-yuh" secondAttribute="height" multiplier="62:67" id="8Bh-42-447"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="e7Q-Mz-yuh" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="0fj-Ek-eEN"/>
+                            <constraint firstItem="e7Q-Mz-yuh" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="PtE-Dm-sZn"/>
+                            <constraint firstItem="Nle-58-K4P" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="RtV-WN-Xux"/>
+                            <constraint firstItem="Nle-58-K4P" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="bEg-IV-l2d"/>
+                            <constraint firstItem="Nle-58-K4P" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="erL-8a-fg4"/>
+                            <constraint firstItem="Nle-58-K4P" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="sXT-qO-Zay"/>
+                            <constraint firstItem="e7Q-Mz-yuh" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="310:414" id="xYT-yQ-3sg"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="UBike-background" width="1536" height="1536"/>
+        <image name="bicycle-rider-launch" width="409.60000610351562" height="409.60000610351562"/>
+    </resources>
 </document>
