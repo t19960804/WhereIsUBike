@@ -12,14 +12,16 @@ import MapKit
 import SVProgressHUD
 class ListStationController: UIViewController {
     
-    var bikeStationArray = [BikeStationData](){
+    
+    var bikeViewModelArray = [BikeViewModel](){
         didSet{
-            
             bikeStationList.reloadData()
-            filteredStationArray = bikeStationArray
+            filteredBikeViewModelArray = bikeViewModelArray
+            
         }
     }
-    var filteredStationArray = [BikeStationData]()
+   
+    var filteredBikeViewModelArray = [BikeViewModel]()
     
     let bikeStationList: UITableView = {
         let tableView = UITableView()
@@ -46,26 +48,29 @@ class ListStationController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        setting_DelegateAndDatasource()
+        addAllSubviews()
+        setUpConstraints()
+       
+    }
+    fileprivate func setting_DelegateAndDatasource(){
         bikeStationList.delegate = self
         bikeStationList.dataSource = self
         searchBar.delegate = self
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+    }
+    fileprivate func addAllSubviews(){
         self.view.addSubview(searchBar)
         self.view.addSubview(bikeStationList)
         bikeStationList.addSubview(refreshControll)
-        
-        setUpConstraints()
-        
-        
-        
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let indexPath = bikeStationList.indexPathForSelectedRow else{return}
-        let destination = segue.destination as! ListStationController_Detail
-        destination.bikeStationData = filteredStationArray[indexPath.row]
+        let listStationController_Detail = segue.destination as! ListStationController_Detail
+        listStationController_Detail.bikeViewModel = filteredBikeViewModelArray[indexPath.row]
     }
     @objc func refreshTableView(){
         bikeStationList.reloadData()
@@ -75,8 +80,8 @@ class ListStationController: UIViewController {
     
 
     func setUpConstraints(){
-        
-        searchBar.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 20 + 44 ).isActive = true
+        let safeAreaHeight_Top = UIApplication.shared.keyWindow!.safeAreaInsets.top
+        searchBar.topAnchor.constraint(equalTo: self.view.topAnchor, constant: safeAreaHeight_Top + 44 ).isActive = true
         searchBar.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
         searchBar.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
 
@@ -97,16 +102,13 @@ class ListStationController: UIViewController {
 extension ListStationController: UITableViewDataSource,UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredStationArray.count
+        return filteredBikeViewModelArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = bikeStationList.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! BikeListCell
-        cell.stationTitle.text = filteredStationArray[indexPath.row].station_Title
-        cell.numberCanBorrow.text = "\(filteredStationArray[indexPath.row].station_Borrow)"
-        cell.numberCanReturn.text = "\(filteredStationArray[indexPath.row].station_Return)"
-        cell.stationDistane.text = "距離:\(filteredStationArray[indexPath.row].station_Distance)"
-        cell.accessoryType = .disclosureIndicator
+        //將對應的ViewModel傳給View觀察
+        cell.bikeViewModel = self.filteredBikeViewModelArray[indexPath.row]
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -122,13 +124,15 @@ extension ListStationController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty{
             
-            filteredStationArray = bikeStationArray
+            filteredBikeViewModelArray = bikeViewModelArray
             bikeStationList.reloadData()
             //如果不加return,會再一次執行亞下面的.filter(),此時searchText是空的將不會有任何結果
             return
         }
-        filteredStationArray = bikeStationArray.filter({ (stationData) -> Bool in
+
+            filteredBikeViewModelArray = bikeViewModelArray.filter({ (stationData) -> Bool in
             return stationData.station_Title.contains(searchText)
+                
         })
         bikeStationList.reloadData()
         

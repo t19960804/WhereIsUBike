@@ -10,26 +10,42 @@ import UIKit
 import GoogleMaps
 import SwiftyJSON
 class ListStationController_Detail: UIViewController,GMSMapViewDelegate {
-    var bikeStationData: BikeStationData?
+    
+    var bikeViewModel: BikeViewModel?{
+        didSet{
+            self.navigationItem.title = bikeViewModel!.station_Title
+            address_Label.text = bikeViewModel?.station_Address
+            distance_Label.text = bikeViewModel?.station_Distance
+            //使用者位置
+            let user_Latitude = bikeViewModel!.userLocation.coordinate.latitude
+            let user_Longtitude = bikeViewModel!.userLocation.coordinate.longitude
+            //站點位置
+            let station_Latitude = bikeViewModel!.station_Lat
+            let station_Longtitude = bikeViewModel!.station_Lng
+            
+            
+            self.dataSetting(user_lat: user_Latitude, user_long: user_Longtitude, station_lat: station_Latitude, station_long: station_Longtitude)
+        }
+    }
     let testKey = "AIzaSyChY6vLVBYllLenYveKqvuNnbU8pb5G__4"
     let apiKey = "AIzaSyBFiJuxMRnRrP-0aAptDNdesmtrSVGpLGY"
     let interNetService = InterNetService()
+
+    let mainBackGroundView = BackGroundView(color: nil)
+    let bottomView = BackGroundView(color: nil)
+    let top_BottomView = BackGroundView(color: nil)
+    let seperateLine = BackGroundView(color: nil)
+    let bottom_BottomView = BackGroundView(color: nil)
+    let address_ImageView = InformImageView(imageName: "map")
+    let distance_ImageView = InformImageView(imageName: "route")
+    lazy var address_StackView = InformStackView(with: address_ImageView, with: address_Label)
+    lazy var distance_StackView = InformStackView(with: distance_ImageView, with: distance_Label)
+    
+    
+    
     let googleMapView: GMSMapView = {
         let view = GMSMapView()
-        view.backgroundColor = UIColor.darkGray
         view.translatesAutoresizingMaskIntoConstraints = false
-        
-        return view
-    }()
-    let bottomView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    let seperateLine: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(white: 0.9, alpha: 1)
         return view
     }()
     let address_Label: UILabel = {
@@ -40,69 +56,31 @@ class ListStationController_Detail: UIViewController,GMSMapViewDelegate {
         label.lineBreakMode = .byWordWrapping
         return label
     }()
-    let address_ImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = #imageLiteral(resourceName: "map")
-
-        return imageView
-    }()
-    lazy var address_StackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [address_ImageView,address_Label])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        return stackView
-    }()
-    
-    /////////////
     let distance_Label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = label.font.withSize(20.0)
-
         return label
     }()
-    let distance_ImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = #imageLiteral(resourceName: "route")
-        return imageView
-    }()
-    lazy var distance_StackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [distance_ImageView,distance_Label])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        return stackView
-    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        googleMapView.delegate = self
-        guard let bikeStationData = bikeStationData else{return}
-        self.navigationItem.title = bikeStationData.station_Title
-        //使用者位置
-        let user_Latitude = bikeStationData.userLocation_Latitude
-        let user_Longtitude = bikeStationData.userLocation_Longtitude
-        //站點位置
-        let station_Latitude = bikeStationData.station_Latitude
-        let station_Longtitude = bikeStationData.station_Longtitude
-        //站點位置
-        let station_Address = bikeStationData.station_Address
-        //距離
-        let distance = bikeStationData.station_Distance
         addSubView()
         setUpConstraints()
+        googleMapView.delegate = self
+
+    }
+    fileprivate func dataSetting(user_lat user_Latitude: Double,user_long user_Longtitude: Double,station_lat station_Latitude: String,station_long station_Longtitude: String){
         
-        address_Label.text = "\(station_Address)"
-        distance_Label.text = "\(distance)"
         showGoogleMap(lat: user_Latitude, lng: user_Longtitude)
         createMarker_Begin(lat: user_Latitude, lng: user_Longtitude)
         createMarker_End(lat: Double(station_Latitude)!, lng: Double(station_Longtitude)!)
         let parameters_Direction = ["key" : self.apiKey,
-                                     "mode" : "walking",
-                                     "alternatives" : "true",
-                                     "origin" : "\(user_Latitude),\(user_Longtitude)",
-                                     "destination" : "\(Double(station_Latitude)!),\(Double(station_Longtitude)!)"]
-        interNetService.dealWithJSON_Direction(parameters_Direction: parameters_Direction) { (json) in
+                                    "mode" : "walking",
+                                    "alternatives" : "true",
+                                    "origin" : "\(user_Latitude),\(user_Longtitude)",
+            "destination" : "\(Double(station_Latitude)!),\(Double(station_Longtitude)!)"]
+        interNetService.dealWithJSON_Direction(with: parameters_Direction) { (json) in
             self.drawTheDirection(with: json)
         }
     }
@@ -127,63 +105,95 @@ class ListStationController_Detail: UIViewController,GMSMapViewDelegate {
         
     }
     func addSubView(){
-        self.view.addSubview(googleMapView)
-        self.view.addSubview(seperateLine)
-        self.view.addSubview(bottomView)
-        bottomView.addSubview(address_StackView)
-        bottomView.addSubview(distance_StackView)
+        self.view.addSubview(mainBackGroundView)
+        mainBackGroundView.addSubview(googleMapView)
+        mainBackGroundView.addSubview(bottomView)
+        //
+        bottomView.addSubview(top_BottomView)
+        bottomView.addSubview(seperateLine)
+        bottomView.addSubview(bottom_BottomView)
+        //
+        top_BottomView.addSubview(address_StackView)
+
+        bottom_BottomView.addSubview(distance_StackView)
     }
     func setUpConstraints(){
-        googleMapView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 40).isActive = true
+        let safeAreaHeight_Top = UIApplication.shared.keyWindow!.safeAreaInsets.top
+        let safeAreaHeight_Bottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
+
+        mainBackGroundView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: safeAreaHeight_Top + 44).isActive = true
+        mainBackGroundView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        mainBackGroundView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        mainBackGroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -(safeAreaHeight_Bottom + 49)).isActive = true
+        mainBackGroundView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+        ///////////////////////////////////////////////////////////////
+        googleMapView.topAnchor.constraint(equalTo: mainBackGroundView.topAnchor).isActive = true
         googleMapView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         googleMapView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        
-        googleMapView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.7).isActive = true
+        googleMapView.heightAnchor.constraint(equalTo: mainBackGroundView.heightAnchor, multiplier: 0.8).isActive = true
         googleMapView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1).isActive = true
-        /////////////////
-        seperateLine.topAnchor.constraint(equalTo: googleMapView.bottomAnchor).isActive = true
-        seperateLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        seperateLine.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1).isActive = true
-        /////////////////
-        
-        /////////////////
-        bottomView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.3).isActive = true
-        bottomView.topAnchor.constraint(equalTo: seperateLine.bottomAnchor).isActive = true
-        bottomView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -40).isActive = true
+        ///////////////////////////////////////////////////////////////
+
+        bottomView.heightAnchor.constraint(equalTo: mainBackGroundView.heightAnchor, multiplier: 0.2).isActive = true
+        bottomView.topAnchor.constraint(equalTo: googleMapView.bottomAnchor).isActive = true
+        bottomView.bottomAnchor.constraint(equalTo: mainBackGroundView.bottomAnchor).isActive = true
         bottomView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         bottomView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        ///////////////////////////////////////////////////////////////
+
+        top_BottomView.heightAnchor.constraint(equalTo: bottomView.heightAnchor, multiplier: 0.5).isActive = true
+        top_BottomView.topAnchor.constraint(equalTo: bottomView.topAnchor).isActive = true
+        top_BottomView.rightAnchor.constraint(equalTo: bottomView.rightAnchor).isActive = true
+        top_BottomView.leftAnchor.constraint(equalTo: bottomView.leftAnchor).isActive = true
+        ///////////////////////////////////////////////////////////////
+
+        bottom_BottomView.heightAnchor.constraint(equalTo: bottomView.heightAnchor, multiplier: 0.5).isActive = true
+        bottom_BottomView.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor).isActive = true
+        bottom_BottomView.rightAnchor.constraint(equalTo: bottomView.rightAnchor).isActive = true
+        bottom_BottomView.leftAnchor.constraint(equalTo: bottomView.leftAnchor).isActive = true
+
+
         /////////////////
-        address_StackView.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 7).isActive = true
-        address_StackView.leftAnchor.constraint(equalTo: bottomView.leftAnchor, constant: 10).isActive = true
-        address_StackView.rightAnchor.constraint(equalTo: bottomView.rightAnchor, constant: -10).isActive = true
-        address_StackView.heightAnchor.constraint(equalTo: bottomView.heightAnchor, multiplier: 0.6).isActive = true
-        address_StackView.widthAnchor.constraint(equalTo: bottomView.widthAnchor, multiplier: 0.9).isActive = true
+        address_StackView.topAnchor.constraint(equalTo: top_BottomView.topAnchor).isActive = true
+        address_StackView.leftAnchor.constraint(equalTo: top_BottomView.leftAnchor).isActive = true
+        address_StackView.rightAnchor.constraint(equalTo: top_BottomView.rightAnchor).isActive = true
+        address_StackView.heightAnchor.constraint(equalTo: top_BottomView.heightAnchor, multiplier: 1).isActive = true
+        address_StackView.widthAnchor.constraint(equalTo: top_BottomView.widthAnchor, multiplier: 1).isActive = true
         
-        address_ImageView.bottomAnchor.constraint(equalTo: address_StackView.bottomAnchor, constant: 0).isActive = true
+        address_ImageView.centerYAnchor.constraint(equalTo: top_BottomView.centerYAnchor).isActive = true
+        address_ImageView.widthAnchor.constraint(equalTo: top_BottomView.widthAnchor, multiplier: 0.1).isActive = true
+        address_ImageView.heightAnchor.constraint(equalTo: top_BottomView.heightAnchor, multiplier: 0.6).isActive = true
+        address_ImageView.leftAnchor.constraint(equalTo: top_BottomView.leftAnchor, constant: 5).isActive = true
 
-        address_ImageView.widthAnchor.constraint(equalTo: address_StackView.widthAnchor, multiplier: 0.1).isActive = true
-        address_ImageView.heightAnchor.constraint(equalTo: address_StackView.heightAnchor, multiplier: 0.3).isActive = true
+        address_Label.centerYAnchor.constraint(equalTo: top_BottomView.centerYAnchor).isActive = true
+        address_Label.rightAnchor.constraint(equalTo: top_BottomView.rightAnchor, constant: -8).isActive = true
 
-        address_Label.rightAnchor.constraint(equalTo: address_StackView.rightAnchor, constant: -20).isActive = true
-        address_Label.heightAnchor.constraint(equalTo: address_StackView.heightAnchor,multiplier: 0.38).isActive = true
-        address_Label.widthAnchor.constraint(equalTo: address_StackView.widthAnchor,multiplier: 0.85).isActive = true
+        address_Label.heightAnchor.constraint(equalTo: top_BottomView.heightAnchor,multiplier: 0.9).isActive = true
+        address_Label.widthAnchor.constraint(equalTo: top_BottomView.widthAnchor,multiplier: 0.85).isActive = true
 
-        ////////////
-        distance_StackView.leftAnchor.constraint(equalTo: bottomView.leftAnchor,constant: 10).isActive = true
-        distance_StackView.topAnchor.constraint(equalTo: address_StackView.bottomAnchor,constant: 15).isActive = true
-////        distance_StackView.bottomAnchor.constraint(equalTo: self.bottomView.bottomAnchor,constant: -10).isActive = true
-        distance_StackView.heightAnchor.constraint(equalTo: bottomView.heightAnchor, multiplier: 0.4).isActive = true
-        distance_StackView.widthAnchor.constraint(equalTo: bottomView.widthAnchor, multiplier: 0.9).isActive = true
+        seperateLine.centerYAnchor.constraint(equalTo: bottomView.centerYAnchor).isActive = true
+        seperateLine.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        seperateLine.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1).isActive = true
+
+
+        //////////////////////////////////////////
+        distance_StackView.leftAnchor.constraint(equalTo: bottom_BottomView.leftAnchor).isActive = true
+        distance_StackView.rightAnchor.constraint(equalTo: bottom_BottomView.rightAnchor).isActive = true
+        distance_StackView.bottomAnchor.constraint(equalTo: bottom_BottomView.bottomAnchor).isActive = true
+        distance_StackView.heightAnchor.constraint(equalTo: bottom_BottomView.heightAnchor, multiplier: 1).isActive = true
+        distance_StackView.widthAnchor.constraint(equalTo: bottom_BottomView.widthAnchor, multiplier: 1).isActive = true
+
+        distance_ImageView.centerYAnchor.constraint(equalTo: bottom_BottomView.centerYAnchor).isActive = true
+        distance_ImageView.widthAnchor.constraint(equalTo: bottom_BottomView.widthAnchor, multiplier: 0.1).isActive = true
+        distance_ImageView.heightAnchor.constraint(equalTo: bottom_BottomView.heightAnchor, multiplier: 0.6).isActive = true
+        distance_ImageView.leftAnchor.constraint(equalTo: bottom_BottomView.leftAnchor, constant: 5).isActive = true
+
         //////
-        distance_ImageView.topAnchor.constraint(equalTo: distance_StackView.topAnchor,constant: 0).isActive = true
+        distance_Label.centerYAnchor.constraint(equalTo: bottom_BottomView.centerYAnchor).isActive = true
+        distance_Label.rightAnchor.constraint(equalTo: bottom_BottomView.rightAnchor, constant: -8).isActive = true
 
-        distance_ImageView.widthAnchor.constraint(equalTo: distance_StackView.widthAnchor, multiplier: 0.1).isActive = true
-        distance_ImageView.heightAnchor.constraint(equalTo: distance_StackView.heightAnchor, multiplier: 0.4).isActive = true
-        //////
-        distance_Label.topAnchor.constraint(equalTo: distance_StackView.topAnchor, constant: 0).isActive = true
-
-        distance_Label.heightAnchor.constraint(equalTo: distance_StackView.heightAnchor,multiplier: 0.5).isActive = true
-        distance_Label.widthAnchor.constraint(equalTo: distance_StackView.widthAnchor,multiplier: 0.85).isActive = true
+        distance_Label.heightAnchor.constraint(equalTo: bottom_BottomView.heightAnchor,multiplier: 0.9).isActive = true
+        distance_Label.widthAnchor.constraint(equalTo: bottom_BottomView.widthAnchor,multiplier: 0.85).isActive = true
 
         
 

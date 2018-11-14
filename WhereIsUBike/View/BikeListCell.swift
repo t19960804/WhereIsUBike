@@ -9,7 +9,19 @@ import Foundation
 
 import UIKit
 
+
 class BikeListCell: UITableViewCell {
+    var bikeViewModel: BikeViewModel?{
+        didSet{
+            stationTitle.text = bikeViewModel!.station_Title
+            numberCanBorrow.text = bikeViewModel!.station_Borrow
+            numberCanReturn.text = bikeViewModel!.station_Return
+            stationDistane.text = "距離:\(bikeViewModel!.station_Distance)"
+            self.accessoryType = .disclosureIndicator
+        }
+    }
+    
+    
     let stationTitle: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +92,7 @@ class BikeListCell: UITableViewCell {
         stationTitle.topAnchor.constraint(equalTo: self.topAnchor, constant: 15).isActive = true
         stationTitle.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 15).isActive = true
         stationTitle.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.4).isActive = true
-        stationTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.7).isActive = true
+        stationTitle.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.6).isActive = true
         
         stationDistane.topAnchor.constraint(equalTo: self.stationTitle.bottomAnchor, constant: -3).isActive = true
         stationDistane.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 15).isActive = true

@@ -17,13 +17,21 @@
 		0B2A88022175D8F300115FBF /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A88012175D8F300115FBF /* CustomTabBarController.swift */; };
 		0B2A88042176E11F00115FBF /* ListStationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A88032176E11F00115FBF /* ListStationController.swift */; };
 		0B2A88062176F83800115FBF /* BikeListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A88052176F83800115FBF /* BikeListCell.swift */; };
-		0B2A88082177219100115FBF /* BikeStationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A88072177219100115FBF /* BikeStationData.swift */; };
+		0B2A88082177219100115FBF /* BikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2A88072177219100115FBF /* BikeModel.swift */; };
 		0B4FB33C217ECD66009E5FAE /* ListStationController_Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4FB33B217ECD66009E5FAE /* ListStationController_Detail.swift */; };
+		0B62C0302193E28500035DF9 /* BikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B62C02F2193E28500035DF9 /* BikeViewModel.swift */; };
 		0B6F91882181AE3F003F4AD8 /* BugReportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F91872181AE3F003F4AD8 /* BugReportController.swift */; };
 		0B6F918A21840D96003F4AD8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B6F918921840D96003F4AD8 /* GoogleService-Info.plist */; };
 		0B6F918E21855DF1003F4AD8 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F918D21855DF1003F4AD8 /* Alert.swift */; };
 		0B6F919421895252003F4AD8 /* UIcolorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F919321895252003F4AD8 /* UIcolorExtension.swift */; };
-		0B6F91CC2189AC18003F4AD8 /* WhereIsUBikeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F91CB2189AC18003F4AD8 /* WhereIsUBikeTests.swift */; };
+		0B908F152196D1A400A02054 /* InternetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F142196D1A400A02054 /* InternetTest.swift */; };
+		0B908F192197D4ED00A02054 /* ListStationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F182197D4ED00A02054 /* ListStationTests.swift */; };
+		0B908F1B2197EFFE00A02054 /* BugReportControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F1A2197EFFE00A02054 /* BugReportControllerTests.swift */; };
+		0B908F3F219BC2DD00A02054 /* BugReport_Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F3E219BC2DD00A02054 /* BugReport_Label.swift */; };
+		0B908F41219BE25E00A02054 /* BugReport_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F40219BE25E00A02054 /* BugReport_StackView.swift */; };
+		0B908F48219BE6DB00A02054 /* BackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F47219BE6DB00A02054 /* BackGroundView.swift */; };
+		0B908F4A219C07E700A02054 /* InformImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F49219C07E700A02054 /* InformImageView.swift */; };
+		0B908F4C219C0B5E00A02054 /* InformStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F4B219C0B5E00A02054 /* InformStackView.swift */; };
 		3DDEB41E70925597AB4BE983 /* Pods_WhereIsUBike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C2EFE3323E46BE0F72DCF /* Pods_WhereIsUBike.framework */; };
 		C833BDA8816E154A2846CA83 /* Pods_WhereIsUBikeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F03612D03465D21669AD5B /* Pods_WhereIsUBikeTests.framework */; };
 /* End PBXBuildFile section */
@@ -51,15 +59,23 @@
 		0B2A88012175D8F300115FBF /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		0B2A88032176E11F00115FBF /* ListStationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStationController.swift; sourceTree = "<group>"; };
 		0B2A88052176F83800115FBF /* BikeListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeListCell.swift; sourceTree = "<group>"; };
-		0B2A88072177219100115FBF /* BikeStationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeStationData.swift; sourceTree = "<group>"; };
+		0B2A88072177219100115FBF /* BikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeModel.swift; sourceTree = "<group>"; };
 		0B4FB33B217ECD66009E5FAE /* ListStationController_Detail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStationController_Detail.swift; sourceTree = "<group>"; };
+		0B62C02F2193E28500035DF9 /* BikeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeViewModel.swift; sourceTree = "<group>"; };
 		0B6F91872181AE3F003F4AD8 /* BugReportController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReportController.swift; sourceTree = "<group>"; };
 		0B6F918921840D96003F4AD8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0B6F918D21855DF1003F4AD8 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		0B6F919321895252003F4AD8 /* UIcolorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIcolorExtension.swift; sourceTree = "<group>"; };
 		0B6F91C92189AC18003F4AD8 /* WhereIsUBikeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhereIsUBikeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0B6F91CB2189AC18003F4AD8 /* WhereIsUBikeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhereIsUBikeTests.swift; sourceTree = "<group>"; };
 		0B6F91CD2189AC18003F4AD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0B908F142196D1A400A02054 /* InternetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetTest.swift; sourceTree = "<group>"; };
+		0B908F182197D4ED00A02054 /* ListStationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStationTests.swift; sourceTree = "<group>"; };
+		0B908F1A2197EFFE00A02054 /* BugReportControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReportControllerTests.swift; sourceTree = "<group>"; };
+		0B908F3E219BC2DD00A02054 /* BugReport_Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReport_Label.swift; sourceTree = "<group>"; };
+		0B908F40219BE25E00A02054 /* BugReport_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReport_StackView.swift; sourceTree = "<group>"; };
+		0B908F47219BE6DB00A02054 /* BackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackGroundView.swift; sourceTree = "<group>"; };
+		0B908F49219C07E700A02054 /* InformImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformImageView.swift; sourceTree = "<group>"; };
+		0B908F4B219C0B5E00A02054 /* InformStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformStackView.swift; sourceTree = "<group>"; };
 		0CA3C7706734D68FE77F3463 /* Pods-WhereIsUBikeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereIsUBikeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhereIsUBikeTests/Pods-WhereIsUBikeTests.release.xcconfig"; sourceTree = "<group>"; };
 		24BD677E60E06612BFA900AA /* Pods-WhereIsUBikeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereIsUBikeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhereIsUBikeTests/Pods-WhereIsUBikeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		404C2EFE3323E46BE0F72DCF /* Pods_WhereIsUBike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhereIsUBike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				0B2A87F821747FEC00115FBF /* Model */,
+				0B62C02E2193E25400035DF9 /* ViewModel */,
 				0B2A87FA21747FFA00115FBF /* Controller */,
 				0B2A87F921747FF500115FBF /* View */,
 				0B2A87E62172E32A00115FBF /* AppDelegate.swift */,
@@ -125,12 +142,11 @@
 		0B2A87F821747FEC00115FBF /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0B2A88072177219100115FBF /* BikeStationData.swift */,
-				0B2A87FF2175B43000115FBF /* CustomAnnotaiton.swift */,
+				0B2A88072177219100115FBF /* BikeModel.swift */,
 				0B2A87FD2175891400115FBF /* InterNetService.swift */,
-				0B2A88052176F83800115FBF /* BikeListCell.swift */,
 				0B6F918D21855DF1003F4AD8 /* Alert.swift */,
 				0B6F919321895252003F4AD8 /* UIcolorExtension.swift */,
+				0B2A87FF2175B43000115FBF /* CustomAnnotaiton.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -138,6 +154,7 @@
 		0B2A87F921747FF500115FBF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0B2A88052176F83800115FBF /* BikeListCell.swift */,
 				0B2A87EF2172E32D00115FBF /* LaunchScreen.storyboard */,
 				0B2A87EA2172E32A00115FBF /* Main.storyboard */,
 			);
@@ -166,15 +183,25 @@
 		0B4FB33A217ECD13009E5FAE /* ListStationController */ = {
 			isa = PBXGroup;
 			children = (
+				0B908F46219BE6BC00A02054 /* SubclassView */,
 				0B2A88032176E11F00115FBF /* ListStationController.swift */,
 				0B4FB33B217ECD66009E5FAE /* ListStationController_Detail.swift */,
 			);
 			path = ListStationController;
 			sourceTree = "<group>";
 		};
+		0B62C02E2193E25400035DF9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0B62C02F2193E28500035DF9 /* BikeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		0B6F91862181AE07003F4AD8 /* BugReportController */ = {
 			isa = PBXGroup;
 			children = (
+				0B908F45219BE6A000A02054 /* SubclassView */,
 				0B6F91872181AE3F003F4AD8 /* BugReportController.swift */,
 			);
 			path = BugReportController;
@@ -183,10 +210,31 @@
 		0B6F91CA2189AC18003F4AD8 /* WhereIsUBikeTests */ = {
 			isa = PBXGroup;
 			children = (
-				0B6F91CB2189AC18003F4AD8 /* WhereIsUBikeTests.swift */,
 				0B6F91CD2189AC18003F4AD8 /* Info.plist */,
+				0B908F142196D1A400A02054 /* InternetTest.swift */,
+				0B908F182197D4ED00A02054 /* ListStationTests.swift */,
+				0B908F1A2197EFFE00A02054 /* BugReportControllerTests.swift */,
 			);
 			path = WhereIsUBikeTests;
+			sourceTree = "<group>";
+		};
+		0B908F45219BE6A000A02054 /* SubclassView */ = {
+			isa = PBXGroup;
+			children = (
+				0B908F3E219BC2DD00A02054 /* BugReport_Label.swift */,
+				0B908F40219BE25E00A02054 /* BugReport_StackView.swift */,
+			);
+			path = SubclassView;
+			sourceTree = "<group>";
+		};
+		0B908F46219BE6BC00A02054 /* SubclassView */ = {
+			isa = PBXGroup;
+			children = (
+				0B908F47219BE6DB00A02054 /* BackGroundView.swift */,
+				0B908F49219C07E700A02054 /* InformImageView.swift */,
+				0B908F4B219C0B5E00A02054 /* InformStackView.swift */,
+			);
+			path = SubclassView;
 			sourceTree = "<group>";
 		};
 		27A4519FD1821638BAC5F60A /* Pods */ = {
@@ -267,6 +315,7 @@
 					};
 					0B6F91C82189AC18003F4AD8 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1010;
 						TestTargetID = 0B2A87E22172E32A00115FBF;
 					};
 				};
@@ -440,17 +489,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B2A88062176F83800115FBF /* BikeListCell.swift in Sources */,
+				0B908F41219BE25E00A02054 /* BugReport_StackView.swift in Sources */,
 				0B2A88042176E11F00115FBF /* ListStationController.swift in Sources */,
+				0B908F4A219C07E700A02054 /* InformImageView.swift in Sources */,
 				0B2A87FC2174823C00115FBF /* MapViewController.swift in Sources */,
 				0B2A88022175D8F300115FBF /* CustomTabBarController.swift in Sources */,
 				0B2A87FE2175891400115FBF /* InterNetService.swift in Sources */,
 				0B2A87E72172E32A00115FBF /* AppDelegate.swift in Sources */,
 				0B6F918E21855DF1003F4AD8 /* Alert.swift in Sources */,
+				0B62C0302193E28500035DF9 /* BikeViewModel.swift in Sources */,
 				0B6F919421895252003F4AD8 /* UIcolorExtension.swift in Sources */,
+				0B908F48219BE6DB00A02054 /* BackGroundView.swift in Sources */,
 				0B4FB33C217ECD66009E5FAE /* ListStationController_Detail.swift in Sources */,
 				0B2A88002175B43000115FBF /* CustomAnnotaiton.swift in Sources */,
+				0B908F3F219BC2DD00A02054 /* BugReport_Label.swift in Sources */,
 				0B6F91882181AE3F003F4AD8 /* BugReportController.swift in Sources */,
-				0B2A88082177219100115FBF /* BikeStationData.swift in Sources */,
+				0B908F4C219C0B5E00A02054 /* InformStackView.swift in Sources */,
+				0B2A88082177219100115FBF /* BikeModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,7 +513,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0B6F91CC2189AC18003F4AD8 /* WhereIsUBikeTests.swift in Sources */,
+				0B908F1B2197EFFE00A02054 /* BugReportControllerTests.swift in Sources */,
+				0B908F192197D4ED00A02054 /* ListStationTests.swift in Sources */,
+				0B908F152196D1A400A02054 /* InternetTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,6 +709,7 @@
 			baseConfigurationReference = 24BD677E60E06612BFA900AA /* Pods-WhereIsUBikeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = WhereIsUBikeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -661,6 +719,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = mySwift.WhereIsUBikeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WhereIsUBike.app/WhereIsUBike";
@@ -672,6 +731,7 @@
 			baseConfigurationReference = 0CA3C7706734D68FE77F3463 /* Pods-WhereIsUBikeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = WhereIsUBikeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

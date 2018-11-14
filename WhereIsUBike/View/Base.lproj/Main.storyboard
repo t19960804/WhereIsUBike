@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jxv-YH-mHs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jxv-YH-mHs">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,7 +12,7 @@
         <!--站點清單-->
         <scene sceneID="WHL-Pa-Kzo">
             <objects>
-                <viewController id="sCv-rZ-vWq" customClass="ListStationController" customModule="WhereIsUBike" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListStationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sCv-rZ-vWq" customClass="ListStationController" customModule="WhereIsUBike" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zOr-GV-P6X">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,7 +31,7 @@
         <!--List Station Controller Detail-->
         <scene sceneID="uEA-od-N6x">
             <objects>
-                <viewController id="b5E-OQ-Ed2" customClass="ListStationController_Detail" customModule="WhereIsUBike" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ListStationDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="b5E-OQ-Ed2" customClass="ListStationController_Detail" customModule="WhereIsUBike" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T3X-2M-aTm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,7 +47,7 @@
         <!--目前位置-->
         <scene sceneID="4K8-re-wLC">
             <objects>
-                <viewController id="2hI-3q-5CU" customClass="MapViewController" customModule="WhereIsUBike" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="2hI-3q-5CU" customClass="MapViewController" customModule="WhereIsUBike" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YYo-0c-J5T">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -148,7 +148,7 @@
         <!--問題回報-->
         <scene sceneID="MfJ-P5-FDf">
             <objects>
-                <viewController id="rvt-la-HGx" customClass="BugReportController" customModule="WhereIsUBike" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="bugReportController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rvt-la-HGx" customClass="BugReportController" customModule="WhereIsUBike" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4WR-RX-94p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

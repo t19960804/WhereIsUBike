@@ -16,10 +16,10 @@ class InterNetService {
     let basicURL = "http://data.ntpc.gov.tw/od/data/api/54DDDC93-589C-4858-9C95-18B2046CC1FC?"
     let directionURL = "https://maps.googleapis.com/maps/api/directions/json"
     let parameters = ["$format" : "json"]
-    var stationArray = [BikeStationData]()
-    
-    
-    func dealWithJSON(completion:@escaping (JSON) -> Void,controller: UIViewController)  {
+    var modelArray = [BikeModel]()
+    var userLocation = CLLocation()
+
+    func dealWithJSON(userLocation: CLLocation,completion:@escaping ([BikeModel]) -> Void,controller: UIViewController)  {
         //reponseString -> responseJSON
         //只有responseJSON可以用平常的方法解
         //因為Alamofire是非同步,所以執行途中會到其他地方,我這邊等他執行結束後使用completion handler
@@ -27,21 +27,34 @@ class InterNetService {
             if response.result.isSuccess {
                 
                 let ubikeJSON = JSON(response.result.value!)
-                completion(ubikeJSON)
-            }else{
-               let errorCode = (response.error! as NSError).code
-                if errorCode == -1009{
-                    self.showAlert(title: "請檢查網路", with: controller)
+                
+                if self.modelArray.isEmpty{
+                    //包裝成Model(陣列)
+                    let bikeModel = self.wrapToModel(userLocation: userLocation, with: ubikeJSON)
+                    completion(bikeModel)
                 }else{
-                    self.showAlert(title: "稍後再試", with: controller)
+                    self.modelArray.removeAll()
+                    //包裝成Model(陣列)
+                    let bikeModel = self.wrapToModel(userLocation: userLocation,with: ubikeJSON)
+
+                    completion(bikeModel)
+                }
+                
+                
+            }else{
+                let errorCode = (response.error! as NSError).code
+                if errorCode == -1009{
+                    self.showAlert(message: "請檢查網路", with: controller)
+                }else{
+                    self.showAlert(message: "目前無法取得資料", with: controller)
                 }
             }
-
+            
         }
-
-
+        
+        
     }
-    func dealWithJSON_Direction(parameters_Direction: [String : String] , completion:@escaping (JSON) -> Void)  {
+    func dealWithJSON_Direction(with parameters_Direction: [String : String] , completion:@escaping (JSON) -> Void)  {
         //reponseString -> responseJSON
         //只有responseJSON可以用平常的方法解
         //因為Alamofire是非同步,所以執行途中會到其他地方,我這邊等他執行結束後使用completion handler
@@ -56,8 +69,27 @@ class InterNetService {
         
         
     }
-    func showAlert(title: String, with controller: UIViewController){
-        let alert = Alert(message: "出現錯誤", title: title, with: controller )
+    func showAlert(message: String, with controller: UIViewController){
+        let alert = Alert(message: message, title: "出現錯誤", with: controller )
         alert.alert_InterNet()
     }
+    func wrapToModel(userLocation: CLLocation,with json: JSON) -> [BikeModel]{
+
+        //解析JSON並建立物件
+        for jsonObject in json.arrayValue{
+            let lat = jsonObject["lat"].stringValue
+            let lng = jsonObject["lng"].stringValue
+            let address = jsonObject["ar"].stringValue
+            let name = jsonObject["sna"].stringValue
+            let number_Borrow = jsonObject["sbi"].stringValue
+            let number_Return = jsonObject["bemp"].stringValue
+            //參數說明 -> 車站名 / 可借還數量 / 距離當前位置距離(字串) / 距離當前位置距離(整數) / 車站經緯度 / 使用者當前經緯度
+            //在抓取JSON時,將"純"資料包裝成Model
+            let model_Object = BikeModel(station_Title: name, station_Borrow: number_Borrow, station_Return: number_Return,station_Latitude:lat, station_Address: address,station_Longtitude:lng,userLocation: userLocation)
+            
+                modelArray.append(model_Object)
+        }
+       return modelArray
+    }
 }
+
