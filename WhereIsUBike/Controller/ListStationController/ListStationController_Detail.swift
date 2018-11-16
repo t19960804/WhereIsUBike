@@ -40,28 +40,12 @@ class ListStationController_Detail: UIViewController,GMSMapViewDelegate {
     let distance_ImageView = InformImageView(imageName: "route")
     lazy var address_StackView = InformStackView(with: address_ImageView, with: address_Label)
     lazy var distance_StackView = InformStackView(with: distance_ImageView, with: distance_Label)
-    
-    
-    
-    let googleMapView: GMSMapView = {
-        let view = GMSMapView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    let address_Label: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(20.0)
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        return label
-    }()
-    let distance_Label: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(20.0)
-        return label
-    }()
+    let address_Label = InformLabel(fontSize: UIFont.systemFont(ofSize: 20), numberOfLines: 0)
+    let distance_Label = InformLabel(fontSize: UIFont.systemFont(ofSize: 20), numberOfLines: 0)
+    let googleMapView = GoogleMapView()
+
+   
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()

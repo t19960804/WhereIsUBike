@@ -32,6 +32,14 @@
 		0B908F48219BE6DB00A02054 /* BackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F47219BE6DB00A02054 /* BackGroundView.swift */; };
 		0B908F4A219C07E700A02054 /* InformImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F49219C07E700A02054 /* InformImageView.swift */; };
 		0B908F4C219C0B5E00A02054 /* InformStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F4B219C0B5E00A02054 /* InformStackView.swift */; };
+		0B908F50219D2D6100A02054 /* StationTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F4F219D2D6100A02054 /* StationTableView.swift */; };
+		0B908F52219D2F7000A02054 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F51219D2F7000A02054 /* SearchBar.swift */; };
+		0B908F54219D6AF500A02054 /* InformLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F53219D6AF500A02054 /* InformLabel.swift */; };
+		0B908F56219D746700A02054 /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F55219D746700A02054 /* GoogleMapView.swift */; };
+		0B908F59219E67D800A02054 /* CustomSubClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F58219E67D800A02054 /* CustomSubClass.swift */; };
+		0B908F5B219E6C6300A02054 /* BugReport_View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F5A219E6C6300A02054 /* BugReport_View.swift */; };
+		0B908F5F219E6F2C00A02054 /* BugReport_TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F5E219E6F2C00A02054 /* BugReport_TextField.swift */; };
+		0B908F61219E7EC500A02054 /* BugReport_TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F60219E7EC500A02054 /* BugReport_TextView.swift */; };
 		3DDEB41E70925597AB4BE983 /* Pods_WhereIsUBike.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 404C2EFE3323E46BE0F72DCF /* Pods_WhereIsUBike.framework */; };
 		C833BDA8816E154A2846CA83 /* Pods_WhereIsUBikeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F03612D03465D21669AD5B /* Pods_WhereIsUBikeTests.framework */; };
 /* End PBXBuildFile section */
@@ -76,6 +84,14 @@
 		0B908F47219BE6DB00A02054 /* BackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackGroundView.swift; sourceTree = "<group>"; };
 		0B908F49219C07E700A02054 /* InformImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformImageView.swift; sourceTree = "<group>"; };
 		0B908F4B219C0B5E00A02054 /* InformStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformStackView.swift; sourceTree = "<group>"; };
+		0B908F4F219D2D6100A02054 /* StationTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTableView.swift; sourceTree = "<group>"; };
+		0B908F51219D2F7000A02054 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		0B908F53219D6AF500A02054 /* InformLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformLabel.swift; sourceTree = "<group>"; };
+		0B908F55219D746700A02054 /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
+		0B908F58219E67D800A02054 /* CustomSubClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSubClass.swift; sourceTree = "<group>"; };
+		0B908F5A219E6C6300A02054 /* BugReport_View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReport_View.swift; sourceTree = "<group>"; };
+		0B908F5E219E6F2C00A02054 /* BugReport_TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReport_TextField.swift; sourceTree = "<group>"; };
+		0B908F60219E7EC500A02054 /* BugReport_TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReport_TextView.swift; sourceTree = "<group>"; };
 		0CA3C7706734D68FE77F3463 /* Pods-WhereIsUBikeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereIsUBikeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhereIsUBikeTests/Pods-WhereIsUBikeTests.release.xcconfig"; sourceTree = "<group>"; };
 		24BD677E60E06612BFA900AA /* Pods-WhereIsUBikeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereIsUBikeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhereIsUBikeTests/Pods-WhereIsUBikeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		404C2EFE3323E46BE0F72DCF /* Pods_WhereIsUBike.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhereIsUBike.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +170,7 @@
 		0B2A87F921747FF500115FBF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0B908F57219E67C200A02054 /* SubClass */,
 				0B2A88052176F83800115FBF /* BikeListCell.swift */,
 				0B2A87EF2172E32D00115FBF /* LaunchScreen.storyboard */,
 				0B2A87EA2172E32A00115FBF /* Main.storyboard */,
@@ -223,6 +240,9 @@
 			children = (
 				0B908F3E219BC2DD00A02054 /* BugReport_Label.swift */,
 				0B908F40219BE25E00A02054 /* BugReport_StackView.swift */,
+				0B908F5A219E6C6300A02054 /* BugReport_View.swift */,
+				0B908F5E219E6F2C00A02054 /* BugReport_TextField.swift */,
+				0B908F60219E7EC500A02054 /* BugReport_TextView.swift */,
 			);
 			path = SubclassView;
 			sourceTree = "<group>";
@@ -233,8 +253,20 @@
 				0B908F47219BE6DB00A02054 /* BackGroundView.swift */,
 				0B908F49219C07E700A02054 /* InformImageView.swift */,
 				0B908F4B219C0B5E00A02054 /* InformStackView.swift */,
+				0B908F4F219D2D6100A02054 /* StationTableView.swift */,
+				0B908F51219D2F7000A02054 /* SearchBar.swift */,
+				0B908F53219D6AF500A02054 /* InformLabel.swift */,
+				0B908F55219D746700A02054 /* GoogleMapView.swift */,
 			);
 			path = SubclassView;
+			sourceTree = "<group>";
+		};
+		0B908F57219E67C200A02054 /* SubClass */ = {
+			isa = PBXGroup;
+			children = (
+				0B908F58219E67D800A02054 /* CustomSubClass.swift */,
+			);
+			path = SubClass;
 			sourceTree = "<group>";
 		};
 		27A4519FD1821638BAC5F60A /* Pods */ = {
@@ -489,21 +521,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B2A88062176F83800115FBF /* BikeListCell.swift in Sources */,
+				0B908F54219D6AF500A02054 /* InformLabel.swift in Sources */,
+				0B908F61219E7EC500A02054 /* BugReport_TextView.swift in Sources */,
 				0B908F41219BE25E00A02054 /* BugReport_StackView.swift in Sources */,
 				0B2A88042176E11F00115FBF /* ListStationController.swift in Sources */,
+				0B908F56219D746700A02054 /* GoogleMapView.swift in Sources */,
 				0B908F4A219C07E700A02054 /* InformImageView.swift in Sources */,
 				0B2A87FC2174823C00115FBF /* MapViewController.swift in Sources */,
 				0B2A88022175D8F300115FBF /* CustomTabBarController.swift in Sources */,
+				0B908F59219E67D800A02054 /* CustomSubClass.swift in Sources */,
 				0B2A87FE2175891400115FBF /* InterNetService.swift in Sources */,
 				0B2A87E72172E32A00115FBF /* AppDelegate.swift in Sources */,
 				0B6F918E21855DF1003F4AD8 /* Alert.swift in Sources */,
+				0B908F50219D2D6100A02054 /* StationTableView.swift in Sources */,
 				0B62C0302193E28500035DF9 /* BikeViewModel.swift in Sources */,
 				0B6F919421895252003F4AD8 /* UIcolorExtension.swift in Sources */,
 				0B908F48219BE6DB00A02054 /* BackGroundView.swift in Sources */,
 				0B4FB33C217ECD66009E5FAE /* ListStationController_Detail.swift in Sources */,
 				0B2A88002175B43000115FBF /* CustomAnnotaiton.swift in Sources */,
 				0B908F3F219BC2DD00A02054 /* BugReport_Label.swift in Sources */,
+				0B908F5B219E6C6300A02054 /* BugReport_View.swift in Sources */,
 				0B6F91882181AE3F003F4AD8 /* BugReportController.swift in Sources */,
+				0B908F52219D2F7000A02054 /* SearchBar.swift in Sources */,
+				0B908F5F219E6F2C00A02054 /* BugReport_TextField.swift in Sources */,
 				0B908F4C219C0B5E00A02054 /* InformStackView.swift in Sources */,
 				0B2A88082177219100115FBF /* BikeModel.swift in Sources */,
 			);

@@ -22,28 +22,15 @@ class ListStationController: UIViewController {
     }
    
     var filteredBikeViewModelArray = [BikeViewModel]()
-    
-    let bikeStationList: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(BikeListCell.self, forCellReuseIdentifier: "Cell")
-        //隱藏滾動條
-        tableView.showsVerticalScrollIndicator = false
-        return tableView
-    }()
+ 
+    let bikeStationList = StationTableView(reuseIdentifier: "Cell")
+    let searchBar = SearchBar(placeHolder: "Search....", tintColor: UIColor.blueColor_Theme)
+
     let refreshControll: UIRefreshControl = {
         let controll = UIRefreshControl()
         controll.tintColor = UIColor.blueColor_Theme
         controll.addTarget(self, action: #selector(refreshTableView), for: UIControl.Event.valueChanged)
         return controll
-    }()
-    let searchBar: UISearchBar = {
-        let bar = UISearchBar()
-        bar.translatesAutoresizingMaskIntoConstraints = false
-        bar.placeholder = "Search...."
-        bar.barTintColor = UIColor.blueColor_Theme
-        
-        return bar
     }()
     override func viewDidLoad() {
         

@@ -9,9 +9,8 @@
 import Foundation
 import UIKit
 class BugReport_Label: UILabel{
-    var content: String
+    
     init(content: String){
-        self.content = content
         //在调用父类构造函数之前，必须保证本类的属性都已经完成初始化
         super.init(frame: CGRect.zero)
         self.translatesAutoresizingMaskIntoConstraints = false

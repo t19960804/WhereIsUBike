@@ -1,19 +1,19 @@
 //
-//  BackGroundView.swift
+//  GoogleMapView.swift
 //  WhereIsUBike
 //
-//  Created by t19960804 on 2018/11/14.
+//  Created by t19960804 on 2018/11/15.
 //  Copyright © 2018 t19960804. All rights reserved.
 //
 
 import Foundation
 import UIKit
+import GoogleMaps
 
-class BackGroundView: UIView {
-    init(color: UIColor?) {
-        super.init(frame: CGRect.zero)
+class GoogleMapView: GMSMapView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.backgroundColor = color 
     }
     
     required init?(coder aDecoder: NSCoder) {

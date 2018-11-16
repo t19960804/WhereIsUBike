@@ -16,12 +16,11 @@ class BugReportController: UIViewController {
     let bugDiscription_Label = BugReport_Label(content: "問題敘述")
     lazy var bugDate_StackView = BugReport_StackView(with: bugDate_Label, with: bugDate_Button)
     lazy var bugTitle_StackView = BugReport_StackView(with: bugTitle_Label, with: bugTitle_TextField)
-
-    let backGroundView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    let backGroundView = BugReport_View()
+    let bugTitle_TextField = BugReport_TextField(placeHolder: "請輸入", textSize: UIFont.systemFont(ofSize: 20))
+    let bugDiscription_TextView = BugReportTextView(textSize: UIFont.systemFont(ofSize: 18))
+    
+    
     let bugDate_Button: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -31,6 +30,13 @@ class BugReportController: UIViewController {
         button.contentHorizontalAlignment = .center
         button.titleLabel?.font = .systemFont(ofSize: 20)
         button.addTarget(self, action: #selector(showDatePicker), for: UIControl.Event.touchUpInside)
+        return button
+    }()
+    let close_DatePicker: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(named: "cancel2"), for: UIControl.State.normal)
+        button.addTarget(self, action: #selector(closeDatePicker), for: UIControl.Event.touchUpInside)
         return button
     }()
     let datePicker: UIDatePicker = {
@@ -46,36 +52,9 @@ class BugReportController: UIViewController {
         picker.addTarget(self, action: #selector(pickerValueChanged), for: UIControl.Event.valueChanged)
         return picker
     }()
-    let close_DatePicker: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "cancel2"), for: UIControl.State.normal)
-        button.addTarget(self, action: #selector(closeDatePicker), for: UIControl.Event.touchUpInside)
-        return button
-    }()
-    let bugTitle_TextField: UITextField = {
-        
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.borderStyle = .roundedRect
-        textField.placeholder = "請輸入"
-        textField.font = textField.font?.withSize(20)
-        textField.layer.borderWidth = 2.5
-        textField.layer.borderColor = UIColor.grayColor_Normal.cgColor
-        textField.layer.cornerRadius = 5
-        return textField
-    }()
-    let bugDiscription_TextView: UITextView = {
-        let textView = UITextView()
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.font = .systemFont(ofSize: 18)
-        //以下無法改變字型大小
-        //textView.font = textView.font?.withSize(18)
-        textView.layer.borderWidth = 2.5
-        textView.layer.borderColor = UIColor.grayColor_Normal.cgColor
-        textView.layer.cornerRadius = 5
-        return textView
-    }()
+   
+    
+
     
     override func viewDidLoad() {
         

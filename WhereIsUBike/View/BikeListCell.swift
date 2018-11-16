@@ -20,64 +20,19 @@ class BikeListCell: UITableViewCell {
             self.accessoryType = .disclosureIndicator
         }
     }
-    
-    
-    let stationTitle: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(25)
-        label.textAlignment = .left
-        return label
-    }()
-    let numberCanBorrow: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(20)
-        return label
-    }()
-    let numberCanReturn: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(20)
-        return label
-    }()
-    lazy var labelStackView_Number: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [numberCanBorrow,numberCanReturn])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fillEqually
-        stackView.axis = .vertical
-        stackView.spacing = 10
-        return stackView
-    }()
-    let numberCanReturn_Pure: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(20)
-        label.text = "可還"
-        return label
-    }()
-    let numberCanBorrow_Pure: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(20)
-        label.text = "可借"
-        return label
-    }()
-    lazy var labelStackView_Text: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [numberCanReturn_Pure,numberCanBorrow_Pure])
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fillEqually
-        stackView.axis = .vertical
-        stackView.spacing = 10
-        return stackView
-    }()
-    let stationDistane: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = label.font.withSize(15)
-        label.textColor = UIColor.grayColor_Normal
-        return label
-    }()
+ 
+    let stationTitle = CellLabel(contents: "", fontSize: UIFont.systemFont(ofSize: 25), textColor: nil)
+    let numberCanBorrow = CellLabel(contents: "", fontSize: UIFont.systemFont(ofSize: 20), textColor: nil)
+    let numberCanReturn = CellLabel(contents: "", fontSize: UIFont.systemFont(ofSize: 20), textColor: nil)
+    let numberCanReturn_Pure = CellLabel(contents: "可還", fontSize: UIFont.systemFont(ofSize: 20), textColor: nil)
+    let numberCanBorrow_Pure = CellLabel(contents: "可借", fontSize: UIFont.systemFont(ofSize: 20), textColor: nil)
+    let stationDistane = CellLabel(contents: "", fontSize: UIFont.systemFont(ofSize: 15), textColor: UIColor.grayColor_Normal)
+
+    lazy var labelStackView_Number = CellStackView(with: numberCanBorrow, with: numberCanReturn)
+    lazy var labelStackView_Text = CellStackView(with: numberCanReturn_Pure, with: numberCanBorrow_Pure)
+
+
+   
     //呼叫UITableViewCell的指定建構器
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
