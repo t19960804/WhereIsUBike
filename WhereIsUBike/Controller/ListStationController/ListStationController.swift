@@ -41,6 +41,22 @@ class ListStationController: UIViewController {
         setUpConstraints()
        
     }
+    fileprivate func mapNavigation(stationName: String,station_Lat: Double,station_Long: Double){
+        //終點座標
+        let coordinates = CLLocationCoordinate2D(latitude: station_Lat, longitude: station_Long)
+        // 确定半径(用coordinate當中心點,畫一個圓的半徑,單位公尺)
+        let regionDistance: CLLocationDistance = 1000
+        //map中心點
+        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+        //對於map的額外設定,可以是nil
+        let options = [MKLaunchOptionsMapCenterKey : NSValue(mkCoordinate: regionSpan.center),
+                       MKLaunchOptionsMapSpanKey : NSValue(mkCoordinateSpan: regionSpan.span)]
+        let placeMark = MKPlacemark(coordinate: coordinates)
+        let mapItem = MKMapItem(placemark: placeMark)
+        mapItem.name = "\(stationName)"
+        
+        mapItem.openInMaps(launchOptions: options)
+    }
     fileprivate func setting_DelegateAndDatasource(){
         bikeStationList.delegate = self
         bikeStationList.dataSource = self
@@ -54,11 +70,11 @@ class ListStationController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let indexPath = bikeStationList.indexPathForSelectedRow else{return}
-        let listStationController_Detail = segue.destination as! ListStationController_Detail
-        listStationController_Detail.bikeViewModel = filteredBikeViewModelArray[indexPath.row]
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        guard let indexPath = bikeStationList.indexPathForSelectedRow else{return}
+//        let listStationController_Detail = segue.destination as! ListStationController_Detail
+//        listStationController_Detail.bikeViewModel = filteredBikeViewModelArray[indexPath.row]
+//    }
     @objc func refreshTableView(){
         bikeStationList.reloadData()
         refreshControll.endRefreshing()
@@ -102,7 +118,11 @@ extension ListStationController: UITableViewDataSource,UITableViewDelegate{
         return 90.0
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "gotoStationDetail", sender: self)
+        //self.performSegue(withIdentifier: "gotoStationDetail", sender: self)
+        let stationName = filteredBikeViewModelArray[indexPath.row].station_Title
+        let stationLatitude = filteredBikeViewModelArray[indexPath.row].station_Lat
+        let stationLongitude = filteredBikeViewModelArray[indexPath.row].station_Lng
+        mapNavigation(stationName: stationName, station_Lat: Double(stationLatitude) ?? 0.0, station_Long: Double(stationLongitude) ?? 0.0)
     }
     
 }
@@ -126,4 +146,5 @@ extension ListStationController: UISearchBarDelegate{
     }
 
 }
+
 
