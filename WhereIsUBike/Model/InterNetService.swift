@@ -18,7 +18,9 @@ class InterNetService {
     let parameters = ["$format" : "json"]
     var modelArray = [BikeModel]()
     var userLocation = CLLocation()
-
+    
+    static let sharedInstance = InterNetService()
+    
     func dealWithJSON(userLocation: CLLocation,completion:@escaping ([BikeModel]) -> Void,controller: UIViewController)  {
         //reponseString -> responseJSON
         //只有responseJSON可以用平常的方法解
@@ -36,7 +38,6 @@ class InterNetService {
                     self.modelArray.removeAll()
                     //包裝成Model(陣列)
                     let bikeModel = self.wrapToModel(userLocation: userLocation,with: ubikeJSON)
-
                     completion(bikeModel)
                 }
                 
@@ -47,6 +48,7 @@ class InterNetService {
                     self.showAlert(message: "請檢查網路", with: controller)
                 }else{
                     self.showAlert(message: "目前無法取得資料", with: controller)
+                    print("code:",errorCode)
                 }
             }
             
@@ -60,7 +62,6 @@ class InterNetService {
         //因為Alamofire是非同步,所以執行途中會到其他地方,我這邊等他執行結束後使用completion handler
         Alamofire.request(directionURL,method: .get,parameters: parameters_Direction).responseJSON { response in
             if response.result.isSuccess {
-                
                 let ubikeJSON = JSON(response.result.value!)
                 completion(ubikeJSON)
             }else{print("error: \(response.error)")}
@@ -74,22 +75,9 @@ class InterNetService {
         alert.alert_InterNet()
     }
     func wrapToModel(userLocation: CLLocation,with json: JSON) -> [BikeModel]{
-
         //解析JSON並建立物件
-        for jsonObject in json.arrayValue{
-            let lat = jsonObject["lat"].stringValue
-            let lng = jsonObject["lng"].stringValue
-            let address = jsonObject["ar"].stringValue
-            let name = jsonObject["sna"].stringValue
-            let number_Borrow = jsonObject["sbi"].stringValue
-            let number_Return = jsonObject["bemp"].stringValue
-            //參數說明 -> 車站名 / 可借還數量 / 距離當前位置距離(字串) / 距離當前位置距離(整數) / 車站經緯度 / 使用者當前經緯度
-            //在抓取JSON時,將"純"資料包裝成Model
-            let model_Object = BikeModel(station_Title: name, station_Borrow: number_Borrow, station_Return: number_Return,station_Latitude:lat, station_Address: address,station_Longtitude:lng,userLocation: userLocation)
-            
-                modelArray.append(model_Object)
-        }
-       return modelArray
+        self.modelArray = json.arrayValue.map{BikeModel(json: $0, userLocation: userLocation)}
+        return modelArray
     }
 }
 

@@ -12,11 +12,16 @@ import MapKit
 import SwiftyJSON
 import SVProgressHUD
 
+protocol PassDataDelegate {
+    func passViewModel(with vc: UIViewController)
+}
+
 class MapViewController: UIViewController {
     var locationManager = CLLocationManager()
-    var interNetSerVice = InterNetService()
     var userLocation = CLLocation()
     var bikeViewModelArray = [BikeViewModel]()
+    var delegate: PassDataDelegate?
+    
     @IBOutlet weak var userMap: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,27 +31,23 @@ class MapViewController: UIViewController {
         addAnnotation()
     }
     func fetchData(){
-        interNetSerVice.dealWithJSON(userLocation: self.userLocation, completion: { (modelArray) in
+        InterNetService.sharedInstance.dealWithJSON(userLocation: self.userLocation, completion: { (modelArray) in
             
             //將Model包裝成ViewModel
-            self.bikeViewModelArray = modelArray.map({ (bikeItem) -> BikeViewModel in
-                return BikeViewModel(bikeModel: bikeItem)
-            })
+            self.bikeViewModelArray = modelArray.map{BikeViewModel(bikeModel: $0)}
             //依照距離排序
-            self.bikeViewModelArray.sort{ (item1, item2) -> Bool in
-                return item1.stationDistance_Number < item2.stationDistance_Number
-            }
+            self.bikeViewModelArray.sort{$0.stationDistance_Number < $1.stationDistance_Number}
+            
             let navigaationController_Second = self.tabBarController?.viewControllers![1] as! UINavigationController
             let listStationController = navigaationController_Second.viewControllers[0] as! ListStationController
-           //傳給下一頁
-            listStationController.bikeViewModelArray = self.bikeViewModelArray
+            self.delegate = listStationController
+            self.delegate?.passViewModel(with: self)
         }, controller: self)
     }
     fileprivate func userMapSetting(){
         userMap.delegate = self
         // 顯示自身定位位置
         userMap.showsUserLocation = true
-        
         // 允許縮放地圖
         userMap.isZoomEnabled = true
     }
@@ -61,11 +62,16 @@ class MapViewController: UIViewController {
             locationManager.startUpdatingLocation()
         }
     }
-
+    //加入大頭針
     func addAnnotation(){
-        bikeViewModelArray.forEach { (viewModelItems) in
-            //加入大頭針
-            annotationSetting(lattitude: Double(viewModelItems.station_Lat) ?? 0.0, longtitude: Double(viewModelItems.station_Lng) ?? 0.0,stationName: viewModelItems.station_Title,canBorrow: viewModelItems.station_Borrow,canReturn: viewModelItems.station_Return,map: userMap)
+        bikeViewModelArray.forEach {
+            annotationSetting(lattitude: Double($0.station_Lat) ?? 0.0,
+                              longtitude: Double($0.station_Lng) ?? 0.0,
+                              stationName: $0.station_Title,
+                              canBorrow: $0.station_Borrow,
+                              canReturn: $0.station_Return,
+                              map: userMap)
+            
         }
     }
     
@@ -100,21 +106,16 @@ extension MapViewController: CLLocationManagerDelegate{
 extension MapViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "AnnotationView")
         //因為annotationView可能是nil
         guard let stationTitle = annotation.title else{return nil}
         
         if annotationView == nil{
-            
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "AnnotationView")
         }
         if stationTitle! == "My Location"{
-            
             annotationView?.image = UIImage(named: "location64")
-        
         }else{
-            
             annotationView?.image = UIImage(named: "bike64")
         }
         
@@ -123,3 +124,4 @@ extension MapViewController: MKMapViewDelegate{
     }
     
 }
+

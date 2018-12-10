@@ -72,9 +72,7 @@ class BugReportController: UIViewController {
         self.navigationItem.rightBarButtonItem?.tintColor = UIColor.white
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {self.view.endEditing(true)}
     @objc func uploadToFirebase(){
         guard let bug_Date = bugDate_Button.titleLabel?.text else{return}
         guard let bug_Title = bugTitle_TextField.text else{return}
@@ -110,7 +108,6 @@ class BugReportController: UIViewController {
         self.view.addSubview(datePicker)
         self.view.addSubview(close_DatePicker)
         setUpDatePickerConstraints()
-        //元件不可按
         isEnabledComponents(with: false)
     }
     @objc func pickerValueChanged(){
@@ -152,7 +149,7 @@ class BugReportController: UIViewController {
         bugTitle_TextField.widthAnchor.constraint(lessThanOrEqualTo: bugTitle_StackView.widthAnchor, multiplier: 0.8).isActive = true
         /////
         bugDiscription_Label.topAnchor.constraint(equalTo: bugTitle_StackView.bottomAnchor, constant: 25).isActive = true
-        bugDiscription_Label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10).isActive = true
+        bugDiscription_Label.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 8).isActive = true
         bugDiscription_Label.heightAnchor.constraint(equalTo: backGroundView.heightAnchor, multiplier: 0.07).isActive = true
         bugDiscription_Label.widthAnchor.constraint(equalTo: backGroundView.widthAnchor, multiplier: 0.3).isActive = true
         
@@ -201,20 +198,16 @@ extension BugReportController: UITextViewDelegate{
         textView.layer.borderColor = UIColor.blueColor_Theme.cgColor
         //畫面上移
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            
             self.view.frame = CGRect(x: 0, y: -100, width: self.view.frame.width, height: self.view.frame.height)
-            
-        }, completion: nil)
+        })
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         textView.layer.borderColor = UIColor.grayColor_Normal.cgColor
         //畫面回原位
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            
             self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-            
-        }, completion: nil)
+            })
     }
 }
 extension BugReportController: UITextFieldDelegate{

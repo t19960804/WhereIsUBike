@@ -10,9 +10,8 @@ import UIKit
 import SwiftyJSON
 import MapKit
 import SVProgressHUD
+
 class ListStationController: UIViewController {
-    
-    
     var bikeViewModelArray = [BikeViewModel](){
         didSet{
             bikeStationList.reloadData()
@@ -22,7 +21,7 @@ class ListStationController: UIViewController {
     }
    
     var filteredBikeViewModelArray = [BikeViewModel]()
- 
+    
     let bikeStationList = StationTableView(reuseIdentifier: "Cell")
     let searchBar = SearchBar(placeHolder: "Search....", tintColor: UIColor.blueColor_Theme)
 
@@ -39,8 +38,8 @@ class ListStationController: UIViewController {
         setting_DelegateAndDatasource()
         addAllSubviews()
         setUpConstraints()
-       
     }
+    
     fileprivate func mapNavigation(stationName: String,station_Lat: Double,station_Long: Double){
         //終點座標
         let coordinates = CLLocationCoordinate2D(latitude: station_Lat, longitude: station_Long)
@@ -67,21 +66,13 @@ class ListStationController: UIViewController {
         self.view.addSubview(bikeStationList)
         bikeStationList.addSubview(refreshControll)
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        guard let indexPath = bikeStationList.indexPathForSelectedRow else{return}
-//        let listStationController_Detail = segue.destination as! ListStationController_Detail
-//        listStationController_Detail.bikeViewModel = filteredBikeViewModelArray[indexPath.row]
-//    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {self.view.endEditing(true)}
+    
     @objc func refreshTableView(){
         bikeStationList.reloadData()
         refreshControll.endRefreshing()
         
     }
-    
-
     func setUpConstraints(){
         let safeAreaHeight_Top = UIApplication.shared.keyWindow!.safeAreaInsets.top
         searchBar.topAnchor.constraint(equalTo: self.view.topAnchor, constant: safeAreaHeight_Top + 44 ).isActive = true
@@ -98,8 +89,6 @@ class ListStationController: UIViewController {
         
 
     }
-
-
 }
 //MARK: - TableView設定
 extension ListStationController: UITableViewDataSource,UITableViewDelegate{
@@ -118,11 +107,11 @@ extension ListStationController: UITableViewDataSource,UITableViewDelegate{
         return 90.0
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //self.performSegue(withIdentifier: "gotoStationDetail", sender: self)
         let stationName = filteredBikeViewModelArray[indexPath.row].station_Title
         let stationLatitude = filteredBikeViewModelArray[indexPath.row].station_Lat
         let stationLongitude = filteredBikeViewModelArray[indexPath.row].station_Lng
         mapNavigation(stationName: stationName, station_Lat: Double(stationLatitude) ?? 0.0, station_Long: Double(stationLongitude) ?? 0.0)
+        searchBar.text = ""
     }
     
 }
@@ -137,14 +126,20 @@ extension ListStationController: UISearchBarDelegate{
             return
         }
 
-            filteredBikeViewModelArray = bikeViewModelArray.filter({ (stationData) -> Bool in
-            return stationData.station_Title.contains(searchText)
-                
-        })
+        filteredBikeViewModelArray = bikeViewModelArray.filter{$0.station_Title.contains(searchText)}
         bikeStationList.reloadData()
         
     }
 
+}
+extension ListStationController: PassDataDelegate{
+    func passViewModel(with vc: UIViewController) {
+        guard let mapViewController = vc as? MapViewController else {return}
+        //傳給下一頁
+        self.bikeViewModelArray = mapViewController.bikeViewModelArray
+    }
+    
+    
 }
 
 

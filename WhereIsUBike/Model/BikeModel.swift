@@ -8,6 +8,7 @@
 
 import Foundation
 import MapKit
+import SwiftyJSON
 struct BikeModel {
     var station_Title = ""
     var station_Borrow = ""
@@ -17,15 +18,15 @@ struct BikeModel {
     var station_Address = ""
     var userLocation = CLLocation()
     
-    
-    init(station_Title: String,station_Borrow: String,station_Return: String,station_Latitude: String,station_Address: String,station_Longtitude: String,userLocation: CLLocation){
-        self.station_Title = station_Title
-        self.station_Borrow = station_Borrow
-        self.station_Return = station_Borrow
-        self.station_Latitude = station_Latitude
-        self.station_Longtitude = station_Longtitude
-        self.station_Address = station_Address
+    init(json: JSON,userLocation: CLLocation) {
+        //參數說明 -> 車站名 / 可借還數量 / 距離當前位置距離(字串) / 距離當前位置距離(整數) / 車站經緯度 / 使用者當前經緯度
+
+        self.station_Title = json["sna"].stringValue
+        self.station_Borrow = json["sbi"].stringValue
+        self.station_Return = json["bemp"].stringValue
+        self.station_Latitude = json["lat"].stringValue
+        self.station_Longtitude = json["lng"].stringValue
+        self.station_Address = json["ar"].stringValue
         self.userLocation = userLocation
-       
     }
 }

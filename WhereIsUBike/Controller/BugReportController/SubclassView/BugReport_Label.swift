@@ -9,9 +9,13 @@
 import Foundation
 import UIKit
 class BugReport_Label: UILabel{
-    
     init(content: String){
-        //在调用父类构造函数之前，必须保证本类的属性都已经完成初始化
+        //super.init() 必须放在本类属性初始化的后面，保证本类属性全部初始化完成
+        //自身屬性要先有值,才能呼叫super.init()
+        //如果屬性只有 "宣告類別" 但是沒有 "賦值",賦值的時候要在super.init()之前
+        //要使用self之前必須先呼叫super.init()
+        
+        //這裡能放後面是因為這些繼承來的屬性都有 "初始值"
         super.init(frame: CGRect.zero)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.textAlignment = .center

@@ -11,13 +11,13 @@ import MapKit
 struct BikeViewModel {
     var userLocation = CLLocation()
     
-    var station_Title: String =  ""
-    var station_Lat: String = ""
-    var station_Lng: String = ""
-    var station_Borrow: String =  ""
-    var station_Return: String =  ""
-    var station_Address: String = ""
-    var station_Distance: String =  ""
+    var station_Title: String
+    var station_Lat: String
+    var station_Lng: String
+    var station_Borrow: String
+    var station_Return: String
+    var station_Address: String
+    var station_Distance: String = ""
     var stationDistance_Number: Double = 0.0
     
     //將Model裡的"純"資料做邏輯運算,初始化ViewModel的屬性
