@@ -8,6 +8,15 @@ target 'WhereIsUBike' do
   # Pods for WhereIsUBike
 	pod 'SwiftyJSON', '~> 4.0'
 	pod 'Alamofire', '~> 4.7'
-	pod 'SDWebImage', '~> 4.0'
 	pod 'SVProgressHUD'
+	pod 'GoogleMaps'
+  	pod 'GooglePlaces'
+  	pod 'GooglePlacesAPI'
+	pod 'Firebase/Core'
+	pod 'Firebase/Database'
+
+	target 'WhereIsUBikeTests' do
+        inherit! :search_paths
+        pod 'Firebase'
+    end
 end
