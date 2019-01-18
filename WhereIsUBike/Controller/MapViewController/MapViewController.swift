@@ -30,19 +30,21 @@ class MapViewController: UIViewController {
         fetchData()
         addAnnotation()
     }
+    
     func fetchData(){
         InterNetService.sharedInstance.dealWithJSON(userLocation: self.userLocation, completion: { (modelArray) in
-            
             //將Model包裝成ViewModel
             self.bikeViewModelArray = modelArray.map{BikeViewModel(bikeModel: $0)}
             //依照距離排序
             self.bikeViewModelArray.sort{$0.stationDistance_Number < $1.stationDistance_Number}
-            
-            let navigaationController_Second = self.tabBarController?.viewControllers![1] as! UINavigationController
-            let listStationController = navigaationController_Second.viewControllers[0] as! ListStationController
-            self.delegate = listStationController
-            self.delegate?.passViewModel(with: self)
+            self.passViewModel()
         }, controller: self)
+    }
+    fileprivate func passViewModel(){
+        let navigaationController_Second = self.tabBarController?.viewControllers![1] as! UINavigationController
+        let listStationController = navigaationController_Second.viewControllers[0] as! ListStationController
+        self.delegate = listStationController
+        self.delegate?.passViewModel(with: self)
     }
     fileprivate func userMapSetting(){
         userMap.delegate = self
@@ -113,12 +115,7 @@ extension MapViewController: MKMapViewDelegate{
         if annotationView == nil{
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "AnnotationView")
         }
-        if stationTitle! == "My Location"{
-            annotationView?.image = UIImage(named: "location64")
-        }else{
-            annotationView?.image = UIImage(named: "bike64")
-        }
-        
+        annotationView?.image = stationTitle == "My Location" ? UIImage(named: "location64") : UIImage(named: "bike64")
         annotationView?.canShowCallout = true
         return annotationView
     }

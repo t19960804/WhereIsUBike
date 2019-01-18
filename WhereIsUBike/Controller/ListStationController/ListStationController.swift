@@ -14,7 +14,7 @@ import SVProgressHUD
 class ListStationController: UIViewController {
     var bikeViewModelArray = [BikeViewModel](){
         didSet{
-            bikeStationList.reloadData()
+            reloadTableView()
             filteredBikeViewModelArray = bikeViewModelArray
             
         }
@@ -31,15 +31,20 @@ class ListStationController: UIViewController {
         controll.addTarget(self, action: #selector(refreshTableView), for: UIControl.Event.valueChanged)
         return controll
     }()
+    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.bikeStationList.keyboardDismissMode = .interactive
         setting_DelegateAndDatasource()
         addAllSubviews()
         setUpConstraints()
     }
-    
+    func reloadTableView(){
+        DispatchQueue.main.async {
+            self.bikeStationList.reloadData()
+        }
+    }
     fileprivate func mapNavigation(stationName: String,station_Lat: Double,station_Long: Double){
         //終點座標
         let coordinates = CLLocationCoordinate2D(latitude: station_Lat, longitude: station_Long)
@@ -64,18 +69,18 @@ class ListStationController: UIViewController {
     fileprivate func addAllSubviews(){
         self.view.addSubview(searchBar)
         self.view.addSubview(bikeStationList)
-        bikeStationList.addSubview(refreshControll)
+        //bikeStationList.addSubview(refreshControll)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {self.view.endEditing(true)}
     
     @objc func refreshTableView(){
-        bikeStationList.reloadData()
+        reloadTableView()
         refreshControll.endRefreshing()
         
     }
     func setUpConstraints(){
         let safeAreaHeight_Top = UIApplication.shared.keyWindow!.safeAreaInsets.top
-        searchBar.topAnchor.constraint(equalTo: self.view.topAnchor, constant: safeAreaHeight_Top + 44 ).isActive = true
+        searchBar.topAnchor.constraint(equalTo: self.view.topAnchor, constant: safeAreaHeight_Top + 96 ).isActive = true
         searchBar.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
         searchBar.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
 
@@ -121,13 +126,13 @@ extension ListStationController: UISearchBarDelegate{
         if searchText.isEmpty{
             
             filteredBikeViewModelArray = bikeViewModelArray
-            bikeStationList.reloadData()
+            reloadTableView()
             //如果不加return,會再一次執行亞下面的.filter(),此時searchText是空的將不會有任何結果
             return
         }
 
         filteredBikeViewModelArray = bikeViewModelArray.filter{$0.station_Title.contains(searchText)}
-        bikeStationList.reloadData()
+        reloadTableView()
         
     }
 

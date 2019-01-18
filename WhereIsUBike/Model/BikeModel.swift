@@ -28,5 +28,7 @@ struct BikeModel {
         self.station_Longtitude = json["lng"].stringValue
         self.station_Address = json["ar"].stringValue
         self.userLocation = userLocation
+        
+        
     }
 }

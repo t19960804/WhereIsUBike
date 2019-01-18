@@ -56,20 +56,7 @@ class InterNetService {
         
         
     }
-    func dealWithJSON_Direction(with parameters_Direction: [String : String] , completion:@escaping (JSON) -> Void)  {
-        //reponseString -> responseJSON
-        //只有responseJSON可以用平常的方法解
-        //因為Alamofire是非同步,所以執行途中會到其他地方,我這邊等他執行結束後使用completion handler
-        Alamofire.request(directionURL,method: .get,parameters: parameters_Direction).responseJSON { response in
-            if response.result.isSuccess {
-                let ubikeJSON = JSON(response.result.value!)
-                completion(ubikeJSON)
-            }else{print("error: \(response.error)")}
-            
-        }
-        
-        
-    }
+    
     func showAlert(message: String, with controller: UIViewController){
         let alert = Alert(message: message, title: "出現錯誤", with: controller )
         alert.alert_InterNet()

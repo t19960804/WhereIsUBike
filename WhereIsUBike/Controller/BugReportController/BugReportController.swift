@@ -74,9 +74,9 @@ class BugReportController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {self.view.endEditing(true)}
     @objc func uploadToFirebase(){
-        guard let bug_Date = bugDate_Button.titleLabel?.text else{return}
-        guard let bug_Title = bugTitle_TextField.text else{return}
-        guard let bug_Description = bugDiscription_TextView.text else{return}
+        
+        guard let bug_Date = bugDate_Button.titleLabel?.text,let bug_Title = bugTitle_TextField.text,let bug_Description = bugDiscription_TextView.text else{return}
+        
         if bug_Date != "請選擇" && bug_Title != "" && bug_Description != ""{
             addDataToFireBase(date: bug_Date, title: bug_Title, descript: bug_Description)
             showAlert(message: "我們會盡快改進", title: "感謝您的回報!", controller: self)
@@ -125,7 +125,7 @@ class BugReportController: UIViewController {
     func setUpConstraints(){
         let safeAreaHeight_Top = UIApplication.shared.keyWindow!.safeAreaInsets.top
         let safeAreaHeight_Bottom = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
-        backGroundView.topAnchor.constraint(equalTo: self.view.topAnchor,constant: safeAreaHeight_Top + 44).isActive = true
+        backGroundView.topAnchor.constraint(equalTo: self.view.topAnchor,constant: safeAreaHeight_Top + 96).isActive = true
         backGroundView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor,constant: -(safeAreaHeight_Bottom + 49)).isActive = true
         backGroundView.leftAnchor.constraint(equalTo: self.view.leftAnchor,constant: 0).isActive = true
         backGroundView.rightAnchor.constraint(equalTo: self.view.rightAnchor,constant: 0).isActive = true
