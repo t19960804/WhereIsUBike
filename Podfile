@@ -14,6 +14,8 @@ target 'WhereIsUBike' do
   	pod 'GooglePlacesAPI'
 	pod 'Firebase/Core'
 	pod 'Firebase/Database'
+	pod 'Fabric', '~> 1.9.0'
+	pod 'Crashlytics', '~> 3.12.0'
 
 	target 'WhereIsUBikeTests' do
         inherit! :search_paths

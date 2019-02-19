@@ -24,7 +24,6 @@
 		0B6F918E21855DF1003F4AD8 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F918D21855DF1003F4AD8 /* Alert.swift */; };
 		0B6F919421895252003F4AD8 /* UIcolorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F919321895252003F4AD8 /* UIcolorExtension.swift */; };
 		0B908F152196D1A400A02054 /* InternetTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F142196D1A400A02054 /* InternetTest.swift */; };
-		0B908F192197D4ED00A02054 /* ListStationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F182197D4ED00A02054 /* ListStationTests.swift */; };
 		0B908F1B2197EFFE00A02054 /* BugReportControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F1A2197EFFE00A02054 /* BugReportControllerTests.swift */; };
 		0B908F3F219BC2DD00A02054 /* BugReport_Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F3E219BC2DD00A02054 /* BugReport_Label.swift */; };
 		0B908F41219BE25E00A02054 /* BugReport_StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B908F40219BE25E00A02054 /* BugReport_StackView.swift */; };
@@ -70,7 +69,6 @@
 		0B6F91C92189AC18003F4AD8 /* WhereIsUBikeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WhereIsUBikeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B6F91CD2189AC18003F4AD8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0B908F142196D1A400A02054 /* InternetTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetTest.swift; sourceTree = "<group>"; };
-		0B908F182197D4ED00A02054 /* ListStationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListStationTests.swift; sourceTree = "<group>"; };
 		0B908F1A2197EFFE00A02054 /* BugReportControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReportControllerTests.swift; sourceTree = "<group>"; };
 		0B908F3E219BC2DD00A02054 /* BugReport_Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReport_Label.swift; sourceTree = "<group>"; };
 		0B908F40219BE25E00A02054 /* BugReport_StackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReport_StackView.swift; sourceTree = "<group>"; };
@@ -216,7 +214,6 @@
 			children = (
 				0B6F91CD2189AC18003F4AD8 /* Info.plist */,
 				0B908F142196D1A400A02054 /* InternetTest.swift */,
-				0B908F182197D4ED00A02054 /* ListStationTests.swift */,
 				0B908F1A2197EFFE00A02054 /* BugReportControllerTests.swift */,
 			);
 			path = WhereIsUBikeTests;
@@ -530,7 +527,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B908F1B2197EFFE00A02054 /* BugReportControllerTests.swift in Sources */,
-				0B908F192197D4ED00A02054 /* ListStationTests.swift in Sources */,
 				0B908F152196D1A400A02054 /* InternetTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

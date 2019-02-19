@@ -14,9 +14,7 @@ import SVProgressHUD
 class ListStationController: UIViewController {
     var bikeViewModelArray = [BikeViewModel](){
         didSet{
-            reloadTableView()
             filteredBikeViewModelArray = bikeViewModelArray
-            
         }
     }
    
@@ -24,14 +22,15 @@ class ListStationController: UIViewController {
     
     let bikeStationList = StationTableView(reuseIdentifier: "Cell")
     let searchBar = SearchBar(placeHolder: "Search....", tintColor: UIColor.blueColor_Theme)
-
-    let refreshControll: UIRefreshControl = {
+    let refreshControl: UIRefreshControl = {
         let controll = UIRefreshControl()
         controll.tintColor = UIColor.blueColor_Theme
         controll.addTarget(self, action: #selector(refreshTableView), for: UIControl.Event.valueChanged)
         return controll
     }()
-    
+    override func viewWillAppear(_ animated: Bool) {
+        reloadTableView()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor.white
@@ -69,14 +68,13 @@ class ListStationController: UIViewController {
     fileprivate func addAllSubviews(){
         self.view.addSubview(searchBar)
         self.view.addSubview(bikeStationList)
-        //bikeStationList.addSubview(refreshControll)
+        bikeStationList.addSubview(refreshControl)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {self.view.endEditing(true)}
     
     @objc func refreshTableView(){
         reloadTableView()
-        refreshControll.endRefreshing()
-        
+        refreshControl.endRefreshing()
     }
     func setUpConstraints(){
         let safeAreaHeight_Top = UIApplication.shared.keyWindow!.safeAreaInsets.top
@@ -91,8 +89,6 @@ class ListStationController: UIViewController {
         bikeStationList.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
         bikeStationList.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         bikeStationList.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 1).isActive = true
-        
-
     }
 }
 //MARK: - TableView設定
@@ -137,14 +133,6 @@ extension ListStationController: UISearchBarDelegate{
     }
 
 }
-extension ListStationController: PassDataDelegate{
-    func passViewModel(with vc: UIViewController) {
-        guard let mapViewController = vc as? MapViewController else {return}
-        //傳給下一頁
-        self.bikeViewModelArray = mapViewController.bikeViewModelArray
-    }
-    
-    
-}
+
 
 

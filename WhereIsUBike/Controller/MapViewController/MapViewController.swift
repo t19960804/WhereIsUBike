@@ -12,15 +12,12 @@ import MapKit
 import SwiftyJSON
 import SVProgressHUD
 
-protocol PassDataDelegate {
-    func passViewModel(with vc: UIViewController)
-}
+
 
 class MapViewController: UIViewController {
     var locationManager = CLLocationManager()
     var userLocation = CLLocation()
     var bikeViewModelArray = [BikeViewModel]()
-    var delegate: PassDataDelegate?
     
     @IBOutlet weak var userMap: MKMapView!
     override func viewDidLoad() {
@@ -43,8 +40,7 @@ class MapViewController: UIViewController {
     fileprivate func passViewModel(){
         let navigaationController_Second = self.tabBarController?.viewControllers![1] as! UINavigationController
         let listStationController = navigaationController_Second.viewControllers[0] as! ListStationController
-        self.delegate = listStationController
-        self.delegate?.passViewModel(with: self)
+        listStationController.bikeViewModelArray = bikeViewModelArray
     }
     fileprivate func userMapSetting(){
         userMap.delegate = self
