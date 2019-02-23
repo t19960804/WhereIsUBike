@@ -12,8 +12,6 @@ import MapKit
 import SwiftyJSON
 import SVProgressHUD
 
-
-
 class MapViewController: UIViewController {
     var locationManager = CLLocationManager()
     var userLocation = CLLocation()

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+
 class BugReportController: UIViewController {
     var ref: DatabaseReference!
     let bugDate_Label = BugReport_Label(content: "日期")
@@ -53,19 +54,13 @@ class BugReportController: UIViewController {
         return picker
     }()
    
-    
-
-    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         setting_DelegateAndDatasource()
         addAllSubviews()
         setUpConstraints()
         //在Closure裡面沒有用
         datePicker.setValue(UIColor.white, forKeyPath: "textColor")
-       
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.action, target: self, action: #selector(uploadToFirebase))
@@ -74,9 +69,8 @@ class BugReportController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {self.view.endEditing(true)}
     @objc func uploadToFirebase(){
-        
         guard let bug_Date = bugDate_Button.titleLabel?.text,let bug_Title = bugTitle_TextField.text,let bug_Description = bugDiscription_TextView.text else{return}
-        
+
         if bug_Date != "請選擇" && bug_Title != "" && bug_Description != ""{
             addDataToFireBase(date: bug_Date, title: bug_Title, descript: bug_Description)
             showAlert(message: "我們會盡快改進", title: "感謝您的回報!", controller: self)
