@@ -12,12 +12,9 @@ import MapKit
 import SVProgressHUD
 
 class ListStationController: UIViewController {
-    var bikeViewModelArray = [BikeViewModel](){
-        didSet{
-            filteredBikeViewModelArray = bikeViewModelArray
-        }
-    }
-   
+    var userLocation = CLLocation()
+    
+    var bikeViewModelArray = [BikeViewModel]()
     var filteredBikeViewModelArray = [BikeViewModel]()
     
     let bikeStationList = StationTableView(reuseIdentifier: "Cell")
@@ -29,16 +26,33 @@ class ListStationController: UIViewController {
         return controll
     }()
     override func viewWillAppear(_ animated: Bool) {
-        reloadTableView()
+        fetchData()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = .white
         self.bikeStationList.keyboardDismissMode = .interactive
-        setting_DelegateAndDatasource()
-        addAllSubviews()
+        
+        bikeStationList.delegate = self
+        bikeStationList.dataSource = self
+        searchBar.delegate = self
+        self.view.addSubview(searchBar)
+        self.view.addSubview(bikeStationList)
+        bikeStationList.addSubview(refreshControl)
         setUpConstraints()
     }
+    /////////////////
+    func fetchData(){
+        InterNetService.sharedInstance.dealWithJSON(userLocation: self.userLocation, completion: { (modelArray) in
+            //將Model包裝成ViewModel
+            self.bikeViewModelArray = modelArray.map{BikeViewModel(bikeModel: $0)}
+            //依照距離排序
+            self.bikeViewModelArray.sort{$0.stationDistance_Number < $1.stationDistance_Number}
+            self.filteredBikeViewModelArray = self.bikeViewModelArray
+            self.reloadTableView()
+        }, controller: self)
+    }
+    ////////////////
     func reloadTableView(){
         DispatchQueue.main.async {
             self.bikeStationList.reloadData()
@@ -60,20 +74,10 @@ class ListStationController: UIViewController {
         
         mapItem.openInMaps(launchOptions: options)
     }
-    fileprivate func setting_DelegateAndDatasource(){
-        bikeStationList.delegate = self
-        bikeStationList.dataSource = self
-        searchBar.delegate = self
-    }
-    fileprivate func addAllSubviews(){
-        self.view.addSubview(searchBar)
-        self.view.addSubview(bikeStationList)
-        bikeStationList.addSubview(refreshControl)
-    }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {self.view.endEditing(true)}
     
     @objc func refreshTableView(){
-        reloadTableView()
+        fetchData()
         refreshControl.endRefreshing()
     }
     func setUpConstraints(){
@@ -112,7 +116,6 @@ extension ListStationController: UITableViewDataSource,UITableViewDelegate{
         let stationLatitude = filteredBikeViewModelArray[indexPath.row].station_Lat
         let stationLongitude = filteredBikeViewModelArray[indexPath.row].station_Lng
         mapNavigation(stationName: stationName, station_Lat: Double(stationLatitude) ?? 0.0, station_Long: Double(stationLongitude) ?? 0.0)
-        searchBar.text = ""
     }
     
 }
@@ -120,7 +123,6 @@ extension ListStationController: UITableViewDataSource,UITableViewDelegate{
 extension ListStationController: UISearchBarDelegate{
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty{
-            
             filteredBikeViewModelArray = bikeViewModelArray
             reloadTableView()
             //如果不加return,會再一次執行亞下面的.filter(),此時searchText是空的將不會有任何結果
