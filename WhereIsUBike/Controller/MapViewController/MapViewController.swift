@@ -9,16 +9,18 @@
 //幸福經緯: 25.049627 / 121.459427
 import UIKit
 import MapKit
-import SwiftyJSON
-import SVProgressHUD
+import JGProgressHUD
 
 class MapViewController: UIViewController {
     var locationManager = CLLocationManager()
     var userLocation = CLLocation()
-    
+    let hud = JGProgressHUD(style: .dark)
+
     @IBOutlet weak var userMap: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        hud.textLabel.text = "載入中"
+        hud.show(in: self.view, animated: true)
         userMapSetting()
         locationManagerSetting()
         fetchDataAndSetAnnotation()
@@ -27,6 +29,7 @@ class MapViewController: UIViewController {
     func fetchDataAndSetAnnotation(){
         InterNetService.sharedInstance.dealWithJSON(userLocation: self.userLocation, completion: { (modelArray) in
             self.addAnnotations(with: modelArray)
+            self.hud.dismiss(animated: true)
         }, controller: self)
     }
     fileprivate func passLocation(){

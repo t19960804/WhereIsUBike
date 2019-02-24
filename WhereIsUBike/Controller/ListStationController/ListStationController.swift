@@ -7,16 +7,15 @@
 //
 
 import UIKit
-import SwiftyJSON
 import MapKit
-import SVProgressHUD
+import JGProgressHUD
 
 class ListStationController: UIViewController {
     var userLocation = CLLocation()
     
     var bikeViewModelArray = [BikeViewModel]()
     var filteredBikeViewModelArray = [BikeViewModel]()
-    
+    let hud = JGProgressHUD(style: .dark)
     let bikeStationList = StationTableView(reuseIdentifier: "Cell")
     let searchBar = SearchBar(placeHolder: "Search....", tintColor: UIColor.blueColor_Theme)
     let refreshControl: UIRefreshControl = {
@@ -26,6 +25,8 @@ class ListStationController: UIViewController {
         return controll
     }()
     override func viewWillAppear(_ animated: Bool) {
+        hud.textLabel.text = "載入中"
+        hud.show(in: self.view, animated: true)
         fetchData()
     }
     override func viewDidLoad() {
@@ -50,6 +51,7 @@ class ListStationController: UIViewController {
             self.bikeViewModelArray.sort{$0.stationDistance_Number < $1.stationDistance_Number}
             self.filteredBikeViewModelArray = self.bikeViewModelArray
             self.reloadTableView()
+            self.hud.dismiss(animated: true)
         }, controller: self)
     }
     ////////////////

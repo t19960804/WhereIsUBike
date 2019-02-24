@@ -65,6 +65,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (5.3.3):
     - GoogleUtilities/Logger
+  - JGProgressHUD (2.0.3)
   - leveldb-library (1.20)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
@@ -72,7 +73,6 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - ObjectMapper (3.3.0)
-  - SVProgressHUD (2.2.5)
   - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
@@ -85,7 +85,7 @@ DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
   - GooglePlacesAPI
-  - SVProgressHUD
+  - JGProgressHUD
   - SwiftyJSON (~> 4.0)
 
 SPEC REPOS:
@@ -103,10 +103,10 @@ SPEC REPOS:
     - GooglePlaces
     - GooglePlacesAPI
     - GoogleUtilities
+    - JGProgressHUD
     - leveldb-library
     - nanopb
     - ObjectMapper
-    - SVProgressHUD
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -123,12 +123,12 @@ SPEC CHECKSUMS:
   GooglePlaces: 3d06e6c99654545b4738ce49648745779c25f2ef
   GooglePlacesAPI: 6184a463b58443f1bde3fab6ce725c1c8e540419
   GoogleUtilities: 8208aee3e97a1ae93d44c57e96c476a5a3b03f0a
+  JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
-  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 882483c4c46ab564cfda3d302050239597cd541d
+PODFILE CHECKSUM: da0fc9377251a83425a5cc8d4241d7ab0003a358
 
 COCOAPODS: 1.6.0.beta.2
