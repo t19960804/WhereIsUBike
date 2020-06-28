@@ -324,10 +324,11 @@
 				TargetAttributes = {
 					0B2A87E22172E32A00115FBF = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1150;
 					};
 					0B6F91C82189AC18003F4AD8 = {
 						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1150;
 						TestTargetID = 0B2A87E22172E32A00115FBF;
 					};
 				};
@@ -712,7 +713,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mySwift.WhereIsUBike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -731,7 +732,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mySwift.WhereIsUBike;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -752,7 +753,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = mySwift.WhereIsUBikeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WhereIsUBike.app/WhereIsUBike";
 			};
@@ -773,7 +774,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = mySwift.WhereIsUBikeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WhereIsUBike.app/WhereIsUBike";
 			};
