@@ -9,36 +9,33 @@
 //幸福經緯: 25.049627 / 121.459427
 import UIKit
 import MapKit
-import SwiftyJSON
-import SVProgressHUD
+import JGProgressHUD
 
 class MapViewController: UIViewController {
     var locationManager = CLLocationManager()
     var userLocation = CLLocation()
-    var bikeViewModelArray = [BikeViewModel]()
-    
+    let hud = JGProgressHUD(style: .dark)
+
     @IBOutlet weak var userMap: MKMapView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        hud.textLabel.text = "載入中"
+        hud.show(in: self.view, animated: true)
         userMapSetting()
         locationManagerSetting()
-        fetchData()
-        addAnnotation()
+        fetchDataAndSetAnnotation()
     }
     
-    func fetchData(){
+    func fetchDataAndSetAnnotation(){
         InterNetService.sharedInstance.dealWithJSON(userLocation: self.userLocation, completion: { (modelArray) in
-            //將Model包裝成ViewModel
-            self.bikeViewModelArray = modelArray.map{BikeViewModel(bikeModel: $0)}
-            //依照距離排序
-            self.bikeViewModelArray.sort{$0.stationDistance_Number < $1.stationDistance_Number}
-            self.passViewModel()
+            self.addAnnotations(with: modelArray)
+            self.hud.dismiss(animated: true)
         }, controller: self)
     }
-    fileprivate func passViewModel(){
+    fileprivate func passLocation(){
         let navigaationController_Second = self.tabBarController?.viewControllers![1] as! UINavigationController
         let listStationController = navigaationController_Second.viewControllers[0] as! ListStationController
-        listStationController.bikeViewModelArray = bikeViewModelArray
+        listStationController.userLocation = self.userLocation
     }
     fileprivate func userMapSetting(){
         userMap.delegate = self
@@ -59,10 +56,10 @@ class MapViewController: UIViewController {
         }
     }
     //加入大頭針
-    func addAnnotation(){
-        bikeViewModelArray.forEach {
-            annotationSetting(lattitude: Double($0.station_Lat) ?? 0.0,
-                              longtitude: Double($0.station_Lng) ?? 0.0,
+    func addAnnotations(with array: [BikeModel]){
+        array.forEach {
+            annotationSetting(lattitude: Double($0.station_Latitude) ?? 0.0,
+                              longtitude: Double($0.station_Longtitude) ?? 0.0,
                               stationName: $0.station_Title,
                               canBorrow: $0.station_Borrow,
                               canReturn: $0.station_Return,
@@ -81,12 +78,13 @@ class MapViewController: UIViewController {
     
 
 }
+//使用者移動後
+//觸發以下的fetchData()
+//fetchData()裡面將包裝好的ViewModel陣列給ListStationController
 extension MapViewController: CLLocationManagerDelegate{
     //顯示特定區域 -> 座標 + 縮放範圍
     //當使用者座標改變後觸發
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-
         guard let newestLocation = locations.last else {return}
         userLocation = newestLocation
         //放大比例(latitudeDelta/longitudeDelta)
@@ -94,9 +92,7 @@ extension MapViewController: CLLocationManagerDelegate{
         let mapRegion = MKCoordinateRegion.init(center: userLocation.coordinate, span: mapSpan)
 
         userMap.setRegion(mapRegion, animated: true)
-        fetchData()
-        addAnnotation()
-        
+        passLocation()
     }
 }
 extension MapViewController: MKMapViewDelegate{
